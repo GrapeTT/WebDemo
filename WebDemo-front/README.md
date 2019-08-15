@@ -1,4 +1,4 @@
-# webdemo
+# WebDemo
 
 > A Vue.js project
 
