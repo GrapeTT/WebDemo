@@ -1,7 +1,7 @@
 # WebDemo
 
 #### Description
-Front and back separated web project, the back uses SpringBoot, the front uses Vue
+Front and back separated web project, the back uses SpringBoot, the front uses H5
 
 #### Software Architecture
 Software architecture description

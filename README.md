@@ -1,7 +1,7 @@
 # WebDemo
 
 #### 介绍
-前后端分离的Web项目，后端使用SpringBoot，前端使用Vue
+前后端分离的Web项目，后端使用SpringBoot，前端使用H5
 
 #### 软件架构
 软件架构说明
