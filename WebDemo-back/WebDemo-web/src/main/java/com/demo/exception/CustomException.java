@@ -9,21 +9,37 @@ package com.demo.exception;
  * @Version：1.0
  */
 public class CustomException  extends Exception{
+    //编码
+    private String code= "500";
     //异常信息
     private String message;
     
     public CustomException() {}
-
+    
     public CustomException(String message) {
         super(message);
         this.message = message;
     }
-
+    
+    public CustomException(String code, String message) {
+        super(message);
+        this.code = code;
+        this.message = message;
+    }
+    
+    public String getCode() {
+        return code;
+    }
+    
+    public void setCode(String code) {
+        this.code = code;
+    }
+    
     @Override
     public String getMessage() {
         return message;
     }
-
+    
     public void setMessage(String message) {
         this.message = message;
     }

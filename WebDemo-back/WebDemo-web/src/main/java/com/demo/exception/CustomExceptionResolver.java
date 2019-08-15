@@ -18,6 +18,26 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @ControllerAdvice
 public class CustomExceptionResolver {
     /**
+     * @Description：404
+     * @Author：涛哥
+     * @Time：2019/3/6 16:54
+     */
+    @ExceptionHandler(value = NoHandlerFoundException.class)
+    public @ResponseBody Message resolve404() {
+        return Message.failure("404", "没有找到对应接口");
+    }
+    
+    /**
+     * @Description：405
+     * @Author：涛哥
+     * @Time：2019/3/6 16:54
+     */
+    @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
+    public @ResponseBody Message resolve405() {
+        return Message.failure("405", "请求方式错误");
+    }
+    
+    /**
      * @Description：500
      * @Author：涛哥
      * @Time：2019/3/6 16:54
@@ -30,6 +50,6 @@ public class CustomExceptionResolver {
         } else {
             customException = new CustomException("对不起，服务器发生未知错误");
         }
-        return Message.failure(customException.getMessage());
+        return Message.failure(customException.getCode(), customException.getMessage());
     }
 }

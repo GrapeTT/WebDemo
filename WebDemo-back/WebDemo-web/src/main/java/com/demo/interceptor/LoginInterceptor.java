@@ -1,5 +1,6 @@
 package com.demo.interceptor;
 
+import com.demo.exception.CustomException;
 import com.demo.tools.SessionUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,7 +34,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
         //执行这里表示用户身份需要认证
-        return false;
+        throw new CustomException("000", "请先登录");
+//        return false;
     }
 
     //进入handler方法之后，返回ModelAndView之前执行

@@ -52,7 +52,7 @@ public class Message {
         this.data = data;
     }
     
-    public static Message create(String code,String result) {
+    public static Message create(String code, String result) {
         return new Message(code, result);
     }
     
@@ -70,6 +70,10 @@ public class Message {
     
     public static Message failure(String msg) {
         return create("000", msg);
+    }
+    
+    public static Message failure(String code, String msg) {
+        return create(code, msg);
     }
     
     public static Message failure(Exception ex) {

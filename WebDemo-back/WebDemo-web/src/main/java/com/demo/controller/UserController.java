@@ -65,11 +65,6 @@ public class UserController extends BaseController {
         session.setMaxInactiveInterval(1800);
         return Message.success("登录成功");
     }
-    
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index(){
-        return "index";
-    }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request) throws Exception {

@@ -31,6 +31,12 @@ spring:
         max-active: 200
         max-idle: 10
         max-wait: 1000ms
+#  屏蔽默认异常处理
+  mvc:
+    throw-exception-if-no-handler-found: true
+#  关闭静态资源映射
+  resources:
+    add-mappings: false
 
 #mybatis配置
 mybatis:
