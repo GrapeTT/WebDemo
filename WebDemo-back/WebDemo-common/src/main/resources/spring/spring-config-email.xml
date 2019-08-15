@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <bean id="emailClient" class="com.demo.email.EmailClient">
+        <property name="host" value="${WebDemo.email.host}"/>
+        <property name="port" value="${WebDemo.email.port}"/>
+        <property name="sender" value="${WebDemo.email.sender}"/>
+        <property name="isAuth" value="${WebDemo.email.isAuth}"/>
+        <property name="authCode" value="${WebDemo.email.authCode}"/>
+        <property name="title" value="WebDemo：验证码" />
+    </bean>
+</beans>

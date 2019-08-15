@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <title>WebDemo</title>
+    <meta content="text/html;charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="icon" th:href="@{/resources/icon/favicon.png}" type="image/x-icon">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Google fonts - Popppins for copy-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
+    <!-- orion icons-->
+    <link rel="stylesheet" th:href="@{/css/orionicons.css}">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" th:href="@{/css/style.default.css}" id="theme-stylesheet">
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/jsencrypt.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/Chart.min.js}"></script>
+    <script th:src="@{/js/front.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+</head>
+<body>
+<!--提示框-->
+    <div id="tips" class="tips"></div>
+<!--    登录页-->
+    <script th:src="@{/js/indexJS.js}"></script>
+<!--    头部-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow" style="height: 72px!important;"><a href="/" class="navbar-brand font-weight-bold text-uppercase text-base" style="font-size: 32px!important;">Web Demo</a></nav>
+    </header>
+    <div class="page-holder d-flex align-items-center">
+        <div class="container">
+            <div class="row align-items-center py-5">
+                <div class="col-5 col-lg-7 mx-auto mb-5 mb-lg-0">
+                    <div class="pr-lg-5"><img src="/resources/images/background.svg" alt="" class="img-fluid"></div>
+                </div>
+                <div class="col-lg-5 px-lg-4">
+                    <h2 class="mb-4">Welcome Back</h2>
+                    <p class="text-muted">You cannot improve your past, but you can improve your future. Once time is wasted, life is wasted.</p>
+                    <div class="mt-4">
+                        <div class="form-group mb-4">
+                            <input type="text" id="username" onkeydown='enterEvent("btn_login")' placeholder="账号" class="form-control border-0 shadow form-control-lg">
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="password" id="password" onkeydown='enterEvent("btn_login")' placeholder="密码" class="form-control border-0 shadow form-control-lg text-violet">
+                        </div>
+                        <div class="form-group mb-4">
+                            <div class="custom-control custom-checkbox">
+                                <a href="/password/retrieve" style="font-size: 14px; float: right;">忘记密码?</a>
+                            </div>
+                        </div>
+                        <button id="btn_login" onclick="indexJS.check()" class="btn_submit" style="margin-left: 6px;">登 录</button>
+                        <button onclick="pageTo('/user/getRegisterPage', '_self')" class="btn_submit" style="margin-left: 30px;">注 册</button>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-5 mb-0 text-gray-400 text-center">
+                &copy;Copyright 2019. Web Demo. All Rights Reserved.
+                <br>Design & Develop：WT
+            </p>
+        </div>
+    </div>
+</body>
+</html>

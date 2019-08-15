@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.demo</groupId>
+    <artifactId>WebDemo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    
+    <name>WebDemo</name>
+    <description>Web Demo Project</description>
+
+    <!-- 项目模块列表,请根据项目情况增减 -->
+    <modules>
+        <module>WebDemo-dao</module>
+        <module>WebDemo-common</module>
+        <module>WebDemo-service</module>
+        <module>WebDemo-domain</module>
+        <module>WebDemo-web</module>
+    </modules>
+    
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.5.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <!-- 公共属性定义 -->
+    <properties>
+        <jdk.version>1.8</jdk.version>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <start-class>WebDemoApplication</start-class>
+    </properties>
+    
+    <profiles>
+        <profile>
+            <id>develop</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- mysql配置 -->
+                <WebDemo.mysql.url>jdbc:MySql://127.0.0.1:3306/demo?characterEncoding=UTF-8&amp;serverTimezone=UTC</WebDemo.mysql.url>
+                <WebDemo.mysql.username>root</WebDemo.mysql.username>
+                <WebDemo.mysql.password>666666</WebDemo.mysql.password>
+                <!-- redis配置 -->
+                <WebDemo.redis.host>120.79.60.67</WebDemo.redis.host>
+                <WebDemo.redis.port>6379</WebDemo.redis.port>
+                <WebDemo.redis.password>666666</WebDemo.redis.password>
+                <!-- 邮件配置 -->
+                <WebDemo.email.host>smtp.qq.com</WebDemo.email.host>
+                <WebDemo.email.port>465</WebDemo.email.port>
+                <WebDemo.email.sender>swustlabmanager@qq.com</WebDemo.email.sender>
+                <WebDemo.email.isAuth>true</WebDemo.email.isAuth>
+                <WebDemo.email.authCode>eygofdqjpmsgbegh</WebDemo.email.authCode>
+                <!-- 日志配置 -->
+                <WebDemo.log.level>DEBUG</WebDemo.log.level>
+            </properties>
+        </profile>
+        <profile>
+            <id>product</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <!-- mysql配置 -->
+                <WebDemo.mysql.url>jdbc:MySql://127.0.0.1:3306/demo?characterEncoding=UTF-8&amp;serverTimezone=UTC</WebDemo.mysql.url>
+                <WebDemo.mysql.username>root</WebDemo.mysql.username>
+                <WebDemo.mysql.password>666666</WebDemo.mysql.password>
+                <!-- redis配置 -->
+                <WebDemo.redis.host>120.79.60.67</WebDemo.redis.host>
+                <WebDemo.redis.port>6379</WebDemo.redis.port>
+                <WebDemo.redis.password>666666</WebDemo.redis.password>
+                <!-- 邮件配置 -->
+                <WebDemo.email.host>smtp.qq.com</WebDemo.email.host>
+                <WebDemo.email.port>465</WebDemo.email.port>
+                <WebDemo.email.sender>swustlabmanager@qq.com</WebDemo.email.sender>
+                <WebDemo.email.isAuth>true</WebDemo.email.isAuth>
+                <WebDemo.email.authCode>eygofdqjpmsgbegh</WebDemo.email.authCode>
+                <!-- 日志配置 -->
+                <WebDemo.log.level>INFO</WebDemo.log.level>
+            </properties>
+        </profile>
+    </profiles>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.1.5.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 日志依赖 -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.26</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- MySQL依赖 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.16</version>
+            </dependency>
+            <!-- mybatis依赖 -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>2.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>3.5.2</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- mybatis 分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>1.2.10</version>
+            </dependency>
+            <!-- 数据库连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.17</version>
+            </dependency>
+            <!-- json依赖 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.58</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>5.1.8.RELEASE</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.9.8</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- 邮件服务依赖 -->
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>1.4.7</version>
+            </dependency>
+            <!-- Apache工具 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.9</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>3.2.2</version>
+            </dependency>
+    
+            <!-- 引入thymelaf 则不需要引入web依赖，若不需要thymelaf则需要添加spring-boot-starter-web -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-thymeleaf</artifactId>
+                <version>2.1.6.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <optional>true</optional>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!--fork :  如果没有该项配置，devtools不会起作用，即应用不会restart -->
+                    <fork>true</fork>
+                    <excludeDevtools>true</excludeDevtools>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <useDefaultDelimiters>true</useDefaultDelimiters>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

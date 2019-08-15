@@ -1,0 +1,228 @@
+/*body样式*/
+body{
+    min-width: 1200px!important;
+    max-width: 1400px!important;
+    margin: 0 auto!important;
+}
+
+/*提示框样式*/
+.tips{
+    display: none;
+    width: 260px;
+    height: 130px;
+    line-height: 30px;
+    padding: 50px 20px;
+    background-color: rgba(0, 0, 0, 0.76);
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    z-index: 999;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -140px;
+    margin-top: -65px;
+}
+.tips img{
+    position: relative;
+    top: -1px;
+    width: 22px;
+    height: 22px;
+}
+
+/*注册框样式*/
+.register{
+    width: 800px;
+    position: absolute;
+    left: 50%;
+    margin-left: -400px;
+    padding-top: 30px;
+}
+
+/*td样式*/
+.td_style{
+    padding-right: 12px;
+    font-size: 16px;
+    text-align: right;
+}
+
+/*input样式*/
+.input_style{
+    width: 330px!important;
+    height: 36px!important;
+    font-size: 15px!important;
+}
+
+/*h2样式*/
+.h2_style{
+    text-align: center!important;
+    font-size: 20px!important;
+}
+
+/*提交按钮样式*/
+.btn_submit{
+    border-radius: 20px;
+    outline: none;
+    width: 100px;
+    height: 36px;
+    font-size: 16px;
+    color: white;
+    background-color: #4680ff;
+    border: 1px solid #4680ff;
+}
+.btn_submit:hover{
+    background-color: #007bff;
+}
+
+/*span默认颜色*/
+.span_default_color {
+    color: #2db7f5!important;
+}
+
+/*question提示样式*/
+.question_tips{
+    float: left;
+    position: relative;
+    top: 8px;
+    margin-left: 10px;
+}
+.question_tips_img{
+    width: 20px;
+    height: 20px;
+}
+.question_tips_img:hover{
+    cursor: pointer;
+}
+
+/*联系管理员页面div样式*/
+.contact_admin{
+    width: 560px;
+    position: absolute;
+    left: 50%;
+    margin-left: -280px;
+    padding-top: 30px;
+}
+
+/*找回/重置密码框样式*/
+.retrieve_reset_style{
+    width: 700px;
+    position: absolute;
+    left: 50%;
+    margin-left: -350px;
+    padding-top: 30px;
+}
+
+/*申请、审核时说明输入框样式*/
+.textarea_apply_check {
+    width: 450px!important;
+    height: 200px!important;
+    font-size: 15px!important;
+}
+
+/*p标签居中样式*/
+.p_align{
+    text-align: center!important;
+    font-size: 18px!important;
+}
+
+/*查看按钮样式*/
+.btn_view{
+    border-radius: 20px;
+    outline: none;
+    width: 100px;
+    height: 36px;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    border: 1px solid #4680ff;
+}
+.btn_view:hover{
+    color: white;
+    background-color: #007bff;
+}
+
+/*p标签左边框样式*/
+.p_left{
+    border-left: 2px solid #cccccc;
+    padding: 0 0 0 6px;
+    text-align: left!important;
+    font-size: 16px;
+}
+
+/*ul默认样式*/
+.ul_default{
+    display: none;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    border: 1px solid #d6d6d6;
+    box-shadow: 0 0 3px #d6d6d6;
+    width: 330px;
+    height: 200px;
+    list-style-type: none;
+    font-size: 15px;
+    overflow: auto
+}
+.ul_default li{
+    margin: 0;
+    padding: 5px 0 5px 16px;
+    color: black;
+}
+.ul_default li:hover{
+    background-color: #d6dee1;
+    cursor: default;
+}
+
+/*错误提示div样式*/
+.error_style{
+    width: 800px;
+    position: absolute;
+    left: 50%;
+    margin-left: -400px;
+    padding-top: 30px;
+}
+
+/*table默认样式*/
+.table_default{
+    text-align: left;
+    width: 100%;
+    border:solid #f6f6f6;
+    border-width:1px 0 0 1px;
+    box-shadow: 0 0 3px #e5edf0;
+    word-break: break-all;
+}
+.table_default th{
+    background-color: #efefef;
+    padding: 2px 5px;
+    border:solid #f6f6f6;
+    border-width:0 1px 1px 0;
+}
+.table_default td{
+    padding: 2px 5px;
+    border:solid #f6f6f6;
+    border-width:0 1px 1px 0;
+}
+.table_default tr:hover{
+    background-color: #f9f9f9;
+}
+
+/*输入框样式*/
+.input{
+    border: 1px solid #d9d9d9;
+    border-radius: 7px;
+    outline: none;
+    padding: 0 8px;
+}
+.input::placeholder{
+    color: #d9d9d9;
+}
+.input[readonly]{
+    background-color: #d9d9d9;
+}
+.input:focus{
+    border-style: solid;
+    border-color: #2db7f5;
+    box-shadow: 0 0 3px #2db7f5;
+}
