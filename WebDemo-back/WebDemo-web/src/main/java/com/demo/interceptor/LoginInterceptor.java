@@ -23,29 +23,16 @@ public class LoginInterceptor implements HandlerInterceptor {
         //获取url
         String url = request.getRequestURI();
         //如果进行登陆、注册、找回密码、登出，放行
-        if(url.equals("/") || url.endsWith("/login") || url.endsWith("/getRegisterPage") || url.startsWith("/password") || url.endsWith("/logout")){
+        if(url.endsWith("/login") || url.endsWith("/getValidateCode") || url.endsWith("/register") || url.startsWith("/password") || url.endsWith("/logout")){
             return true;
         }
         //取出用户身份信息
         String uid = SessionUtils.getUid(request.getSession());
-
         if(uid != null){
-            if("register".equals(uid)) {
-                //如果是注册，则只能放行注册需要的请求
-                if(url.endsWith("/getValidateCode") || url.endsWith("/register") || url.endsWith("/getMajorList") || url.endsWith("/getClassList")) {
-                    return true;
-                } else {
-                    //跳转注册页面
-                    request.getRequestDispatcher("/user/getRegisterPage").forward(request, response);
-                    return false;
-                }
-            } else {
-                //身份存在，放行
-                return true;
-            }
+            //身份存在，放行
+            return true;
         }
-        //执行这里表示用户身份需要认证，跳转登陆页面
-        request.getRequestDispatcher("/").forward(request, response);
+        //执行这里表示用户身份需要认证
         return false;
     }
 

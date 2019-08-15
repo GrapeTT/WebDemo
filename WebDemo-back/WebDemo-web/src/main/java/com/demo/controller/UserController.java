@@ -78,20 +78,6 @@ public class UserController extends BaseController {
     }
     
     /**
-     * @Description：获取注册用户界面
-     * @Author：涛哥
-     * @Time：2019/4/13 16:17
-     */
-    @RequestMapping(value = "/getRegisterPage", method = RequestMethod.GET)
-    public String getRegisterPage(HttpSession session, Model view) throws Exception {
-        //设置注册session
-        session.setAttribute("uid", "register");
-        //设置session过期时间（半小时）
-        session.setMaxInactiveInterval(1800);
-        return "register";
-    }
-    
-    /**
      * @Description：获取验证码
      * @Author：涛哥
      * @Time：2019/4/15 1:01

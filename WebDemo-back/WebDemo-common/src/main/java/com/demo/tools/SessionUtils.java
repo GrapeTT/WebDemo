@@ -40,17 +40,4 @@ public class SessionUtils {
         }
         return String.valueOf(userpin);
     }
-    
-    /**
-     * @Description：获取role
-     * @Author：涛哥
-     * @Time：2019/4/21 23:38
-     */
-    public static Integer getRole(HttpSession session){
-        Object role = session.getAttribute("role");
-        if(role == null) {
-            return null;
-        }
-        return Integer.valueOf(String.valueOf(role));
-    }
 }

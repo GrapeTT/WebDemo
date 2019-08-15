@@ -39,17 +39,6 @@ public class RetrievePasswordController extends BaseController {
     private static Map<String, String> VALIDATECODES = new HashMap<>();
     
     /**
-     * @Description：跳转找回密码页面
-     * @Author：涛哥
-     * @Time：2019/3/31 14:45
-     */
-    @RequestMapping(value = "/retrieve", method = RequestMethod.GET)
-    public String retrievePassword(Model view) throws Exception {
-        return "password/retrievePassword";
-    }
-    
-    
-    /**
      * @Description：获取验证码
      * @Author：涛哥
      * @Time：2019/3/28 19:40

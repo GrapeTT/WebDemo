@@ -15,7 +15,7 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 拦截所有请求，判断是否需要登录，排除静态资源请求
-        registry.addInterceptor(LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/js/**", "/css/**", "/resources/**");
+        registry.addInterceptor(LoginInterceptor()).addPathPatterns("/**");
     }
     
     @Bean
