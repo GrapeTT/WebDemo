@@ -67,9 +67,9 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(HttpServletRequest request) throws Exception {
+    public @ResponseBody Message logout(HttpServletRequest request) throws Exception {
         request.getSession().invalidate();
-        return "login";
+        return Message.success("登出成功");
     }
     
     /**
