@@ -1,7 +1,7 @@
 # WebDemo
 
 #### Description
-前后端分离的Web项目，后端使用SpringBoot，前端使用Vue
+Front and back separated web project, the back uses SpringBoot, the front uses Vue
 
 #### Software Architecture
 Software architecture description
