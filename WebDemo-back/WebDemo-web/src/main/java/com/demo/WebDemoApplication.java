@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -16,6 +17,7 @@ import org.springframework.web.filter.CorsFilter;
 @ImportResource("classpath:spring/spring-config-all.xml")
 @SpringBootApplication
 @MapperScan("com.demo.dao")
+@EnableScheduling//使定时任务生效
 public class WebDemoApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
