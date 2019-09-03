@@ -37,6 +37,13 @@ spring:
 #  关闭静态资源映射
   resources:
     add-mappings: false
+#文件上传配置
+  servlet:
+    multipart:
+      #单个文件大小
+      max-file-size: 5MB
+      #全部文件大小
+      max-request-size: 50MB
 
 #mybatis配置
 mybatis:

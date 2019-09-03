@@ -36,6 +36,19 @@ public class DateUtils {
     }
     
     /**
+     * @Description：Date转String（自定义pattern）
+     * @Author：涛哥
+     * @Time：2019/9/3 9:54
+     */
+    public static String format(Date date, String pattern) {
+        if(date == null || StringUtils.isEmpty(pattern)) {
+            LOGGER.error("转换时间失败，date=" + date + "，pattern=" + pattern);
+            return null;
+        }
+        return DateFormatUtils.format(date, pattern);
+    }
+    
+    /**
      * @Description：Date转String（yyyy/MM/dd）
      * @Author：涛哥
      * @Time：2019/4/21 15:42
