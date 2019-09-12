@@ -61,6 +61,7 @@
                 <webdemo.log.level>DEBUG</webdemo.log.level>
                 <!-- 文件上传&下载配置 -->
                 <webdemo.file.upload.path>/export/data/upload/</webdemo.file.upload.path>
+                <webdemo.file.upload.maxsize>5242880</webdemo.file.upload.maxsize><!-- 文件大小限制为5M -->
                 <webdemo.file.download.url.prefix>http://localhost/file/download/</webdemo.file.download.url.prefix>
             </properties>
         </profile>
@@ -89,6 +90,7 @@
                 <webdemo.log.level>INFO</webdemo.log.level>
                 <!-- 文件上传&下载配置 -->
                 <webdemo.file.upload.path>/export/data/upload/</webdemo.file.upload.path>
+                <webdemo.file.upload.maxsize>5242880</webdemo.file.upload.maxsize><!-- 文件大小限制为5M -->
                 <webdemo.file.download.url.prefix>http://localhost/file/download/</webdemo.file.download.url.prefix>
             </properties>
         </profile>

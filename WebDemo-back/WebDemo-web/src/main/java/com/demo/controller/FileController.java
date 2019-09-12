@@ -43,8 +43,9 @@ public class FileController extends BaseController {
     //上传目录
     @Value("${file.upload.path}")
     private String FILE_PATH;
-    //文件大小，限制5M
-    private final static Long FILE_SIZE = 5 * 1024 * 1024L;
+    //文件大小
+    @Value("${file.upload.maxsize}")
+    private Long FILE_MAX_SIZE;
     //文件地址URL前缀
     @Value("${file.download.url.prefix}")
     private String URL_PREFIX;
@@ -77,7 +78,7 @@ public class FileController extends BaseController {
                     continue;
                 }
                 //判断文件大小
-                if(file.getSize() > FILE_SIZE) {
+                if(file.getSize() > FILE_MAX_SIZE) {
                     fileMap.put(fileName, "文件大于5M，上传失败");
                     continue;
                 }
