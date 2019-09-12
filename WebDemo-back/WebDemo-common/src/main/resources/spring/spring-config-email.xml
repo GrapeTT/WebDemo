@@ -4,11 +4,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     
     <bean id="emailClient" class="com.demo.email.EmailClient">
-        <property name="host" value="${WebDemo.email.host}"/>
-        <property name="port" value="${WebDemo.email.port}"/>
-        <property name="sender" value="${WebDemo.email.sender}"/>
-        <property name="isAuth" value="${WebDemo.email.isAuth}"/>
-        <property name="authCode" value="${WebDemo.email.authCode}"/>
+        <property name="host" value="${webdemo.email.host}"/>
+        <property name="port" value="${webdemo.email.port}"/>
+        <property name="sender" value="${webdemo.email.sender}"/>
+        <property name="isAuth" value="${webdemo.email.isAuth}"/>
+        <property name="authCode" value="${webdemo.email.authCode}"/>
         <property name="title" value="WebDemo：验证码" />
     </bean>
 </beans>

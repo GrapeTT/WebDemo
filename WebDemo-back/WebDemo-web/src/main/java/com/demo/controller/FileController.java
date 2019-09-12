@@ -9,6 +9,7 @@ import com.demo.base.BaseController;
 import com.demo.tools.DateUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,11 +41,13 @@ import java.util.Map;
 @RequestMapping("/file")
 public class FileController extends BaseController {
     //上传目录
-    private final static String FILE_PATH = "/export/data/upload/";
+    @Value("${file.upload.path}")
+    private String FILE_PATH;
     //文件大小，限制5M
     private final static Long FILE_SIZE = 5 * 1024 * 1024L;
     //文件地址URL前缀
-    private final static String URL_PREFIX = "http://localhost/file/download/";
+    @Value("${file.download.url.prefix}")
+    private String URL_PREFIX;
     
     /**
      * @Description：文件上传（单个或批量）

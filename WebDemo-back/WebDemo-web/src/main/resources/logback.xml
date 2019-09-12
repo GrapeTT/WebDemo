@@ -50,12 +50,12 @@
         </layout>
     </appender>
 
-    <logger name="com.demo" level="${WebDemo.log.level}" additivity="false">
+    <logger name="com.demo" level="${webdemo.log.level}" additivity="false">
         <appender-ref ref="SERVICE_FILE"/>
     </logger>
 
     <!-- 根据实际情况修改日志级别，一般线上是INFO以上 -->
-    <root level="${WebDemo.log.level}" additivity="true">
+    <root level="${webdemo.log.level}" additivity="true">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="CONSOLE_FILE"/>
     </root>

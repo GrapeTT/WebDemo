@@ -5,13 +5,17 @@ server:
     context-path: /
 
 spring:
+  application:
+    name: WebDemo
+  profiles:
+    active: dev
   #  jdbc配置
   datasource:
     # 可省略驱动配置, sprin-boot 会由url检测出驱动类型
 #    driver-class-name: com.mysql.jdbc.Driver
-    url: @WebDemo.mysql.url@
-    username: @WebDemo.mysql.username@
-    password: @WebDemo.mysql.password@
+    url: @webdemo.mysql.url@
+    username: @webdemo.mysql.username@
+    password: @webdemo.mysql.password@
     hikari:
       minimum-idle: 5
       maximum-pool-size: 15
@@ -22,8 +26,8 @@ spring:
   #  Redis配置
   redis:
     database: 0
-    host: @WebDemo.redis.host@
-    port: @WebDemo.redis.port@
+    host: @webdemo.redis.host@
+    port: @webdemo.redis.port@
     password: @WebDemo.redis.password@
     timeout: 3000ms
     jedis:
@@ -53,6 +57,6 @@ mybatis:
 #日志配置
 logging:
   level:
-    root: @WebDemo.log.level@
+    root: @webdemo.log.level@
 
 #自定义配置
