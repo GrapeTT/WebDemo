@@ -28,7 +28,7 @@ spring:
     database: 0
     host: @webdemo.redis.host@
     port: @webdemo.redis.port@
-    password: @WebDemo.redis.password@
+    password: @webDemo.redis.password@
     timeout: 3000ms
     jedis:
       pool:
