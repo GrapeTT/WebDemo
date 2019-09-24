@@ -1,17 +1,19 @@
 package com.demo.tools;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 import javax.crypto.Cipher;
-import java.security.Key;
-import java.security.KeyFactory;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.security.*;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Description：RSA工具类
@@ -26,6 +28,8 @@ public class RSAUtils {
     
     //指定加密算法为RSA
     private static final String ALGORITHM = "RSA";
+    //RSA密钥字节
+    private static final Integer KEY_TYPE = 1024;
     //公钥
     private static final String PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDImmbdWBfTN67u7vTLUWGkSUrL\n" +
             "7ANBBmLWvyeYsafIRKNJMU1aSQat5jStLEjGwG8rz94wDy2gSoZCzBw6YEwuH665\n" +
@@ -52,12 +56,11 @@ public class RSAUtils {
      * @Author：涛哥
      * @Time：2019/5/6 13:08
      */
-    private static PublicKey getPublicKey() throws Exception {
-        byte[] keyBytes = (new BASE64Decoder()).decodeBuffer(PUBLIC_KEY);
+    private static PublicKey getPublicKey(String publicKey) throws Exception {
+        byte[] keyBytes = (new BASE64Decoder()).decodeBuffer(publicKey);
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
-        PublicKey publicKey = keyFactory.generatePublic(keySpec);
-        return publicKey;
+        return keyFactory.generatePublic(keySpec);
     }
     
     /**
@@ -65,21 +68,45 @@ public class RSAUtils {
      * @Author：涛哥
      * @Time：2019/5/6 13:06
      */
-    private static PrivateKey getPrivateKey() throws Exception {
-        byte[] keyBytes = (new BASE64Decoder()).decodeBuffer(PRIVATE_KEY);
+    private static PrivateKey getPrivateKey(String privateKey) throws Exception {
+        byte[] keyBytes = (new BASE64Decoder()).decodeBuffer(privateKey);
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
-        PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
-        return privateKey;
+        return keyFactory.generatePrivate(keySpec);
+    }
+    
+    /**
+     * @Description：生成公私钥
+     * @Author：涛哥
+     * @Time：2019/9/24 15:13
+     */
+    public static Map<String, String> generateKey() {
+        Map<String, String> keyMap = new HashMap<>();
+        try {
+            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(ALGORITHM);
+            keyPairGenerator.initialize(KEY_TYPE);
+            KeyPair keyPair = keyPairGenerator.generateKeyPair();
+            RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+            RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
+            keyMap.put("PublicKey", new BASE64Encoder().encodeBuffer(publicKey.getEncoded()));
+            keyMap.put("PrivateKey", new BASE64Encoder().encodeBuffer(privateKey.getEncoded()));
+        } catch (Exception e) {
+            LOGGER.error("生成RSA公私钥对失败", e);
+        }
+        return keyMap;
     }
     
     /**
      * @Description：加密
      * @Author：涛哥
-     * @Time：2019/5/6 11:35
+     * @Time：2019/9/24 14:41
      */
-    public static String encrypt(String source) throws Exception {
-        Key publicKey = getPublicKey();
+    public static String encrypt(String source, String key) throws Exception {
+        if(StringUtils.isEmpty(source) || StringUtils.isEmpty(key)) {
+            LOGGER.warn("RSA加密异常，source=" + source + "，key=" + key);
+            return null;
+        }
+        Key publicKey = getPublicKey(key);
         //得到Cipher对象来实现对源数据的RSA加密
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
@@ -91,12 +118,29 @@ public class RSAUtils {
     }
     
     /**
+     * @Description：加密
+     * @Author：涛哥
+     * @Time：2019/5/6 11:35
+     */
+    public static String encrypt(String source) throws Exception {
+        if(StringUtils.isEmpty(source)) {
+            LOGGER.warn("RSA加密异常，source=" + source);
+            return null;
+        }
+        return encrypt(source, PUBLIC_KEY);
+    }
+    
+    /**
      * @Description：解密
      * @Author：涛哥
-     * @Time：2019/5/6 11:37
+     * @Time：2019/9/24 14:48
      */
-    public static String decrypt(String source) throws Exception {
-        Key privateKey = getPrivateKey();
+    public static String decrypt(String source, String key) throws Exception {
+        if(StringUtils.isEmpty(source) || StringUtils.isEmpty(key)) {
+            LOGGER.warn("RSA解密异常，source=" + source + "，key=" + key);
+            return null;
+        }
+        Key privateKey = getPrivateKey(key);
         //得到Cipher对象对已用公钥加密的数据进行RSA解密
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
@@ -110,5 +154,18 @@ public class RSAUtils {
             LOGGER.error("RSA解密失败", e);
             return null;
         }
+    }
+    
+    /**
+     * @Description：解密
+     * @Author：涛哥
+     * @Time：2019/5/6 11:37
+     */
+    public static String decrypt(String source) throws Exception {
+        if(StringUtils.isEmpty(source)) {
+            LOGGER.warn("RSA解密异常，source=" + source);
+            return null;
+        }
+        return decrypt(source, PRIVATE_KEY);
     }
 }
