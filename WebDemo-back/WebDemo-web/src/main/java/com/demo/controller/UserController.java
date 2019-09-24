@@ -43,23 +43,23 @@ public class UserController extends BaseController {
      * @Time：2019/3/6 16:54
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public @ResponseBody Message login(@RequestBody User userCondition, HttpSession session, Model view) throws Exception {
+    public @ResponseBody Message login(@RequestBody User condition, HttpSession session, Model view) throws Exception {
         //校验账号、密码是否正确
-        String password = userCondition.getPassword();
+        String password = condition.getPassword();
         password = RSAUtils.decrypt(password);
         if(password != null) {
             password = MD5Utils.encrypt(password);
         } else {
             return Message.failure("服务器异常，请稍后再试");
         }
-        userCondition.setPassword(password);
-        User user = userService.selectOneByCondition(userCondition);
+        condition.setPassword(password);
+        User user = userService.selectOneByCondition(condition);
         if(user == null) {
             return Message.failure("账号或密码错误");
         }
         //设置session
         session.setAttribute("uid", user.getUid());
-        session.setAttribute("userpin", "游客");
+        session.setAttribute("userpin", user.getUsername());
         session.setAttribute("DateUtils", new DateUtils());
         //设置session过期时间（半小时）
         session.setMaxInactiveInterval(1800);

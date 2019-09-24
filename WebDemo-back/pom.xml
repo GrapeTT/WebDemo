@@ -48,7 +48,7 @@
                 <webdemo.mysql.username>root</webdemo.mysql.username>
                 <webdemo.mysql.password>666666</webdemo.mysql.password>
                 <!-- redis配置 -->
-                <webdemo.redis.host>120.79.60.67</webdemo.redis.host>
+                <webdemo.redis.host>127.0.0.1</webdemo.redis.host>
                 <webdemo.redis.port>6379</webdemo.redis.port>
                 <webDemo.redis.password>666666</webDemo.redis.password>
                 <!-- 邮件配置 -->
