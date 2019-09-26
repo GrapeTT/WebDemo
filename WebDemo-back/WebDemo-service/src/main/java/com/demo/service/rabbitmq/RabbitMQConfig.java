@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * RabbitMQ配置
  */
-@Configuration
+//@Configuration
 public class RabbitMQConfig {
     public static final String TOPIC_QUEUE1 = "topic.queue1";
     public static final String TOPIC_QUEUE2 = "topic.queue2";

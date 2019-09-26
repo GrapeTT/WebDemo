@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 /**
  * 消费者
  */
-@Component
+//@Component
 public class Consumer {
     private static Logger LOGGER = LoggerFactory.getLogger(Provider.class);
     
