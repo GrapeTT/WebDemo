@@ -48,6 +48,12 @@ spring:
       max-file-size: 5MB
       #全部文件大小
       max-request-size: 50MB
+  #RabbitMQ配置
+  rabbitmq:
+    host: @webdemo.rabbitmq.host@
+    port: @webdemo.rabbitmq.port@
+    username: @webdemo.rabbitmq.username@
+    password: @webDemo.rabbitmq.password@
 
 #mybatis配置
 mybatis:

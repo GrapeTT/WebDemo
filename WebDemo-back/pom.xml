@@ -33,6 +33,7 @@
         <jdk.version>1.8</jdk.version>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <start-class>WebDemoApplication</start-class>
+        <springboot.version>2.1.5.RELEASE</springboot.version>
     </properties>
     
     <profiles>
@@ -59,6 +60,11 @@
                 <webdemo.email.authCode>eygofdqjpmsgbegh</webdemo.email.authCode>
                 <!-- 日志配置 -->
                 <webdemo.log.level>DEBUG</webdemo.log.level>
+                <!-- rabbitmq配置 -->
+                <webdemo.rabbitmq.host>127.0.0.1</webdemo.rabbitmq.host>
+                <webdemo.rabbitmq.port>5672</webdemo.rabbitmq.port>
+                <webdemo.rabbitmq.username>root</webdemo.rabbitmq.username>
+                <webDemo.rabbitmq.password>666666</webDemo.rabbitmq.password>
                 <!-- 文件上传&下载配置 -->
                 <webdemo.file.upload.path>/export/data/upload/</webdemo.file.upload.path>
                 <webdemo.file.upload.maxsize>5242880</webdemo.file.upload.maxsize><!-- 文件大小限制为5M -->
@@ -88,6 +94,11 @@
                 <webdemo.email.authCode>eygofdqjpmsgbegh</webdemo.email.authCode>
                 <!-- 日志配置 -->
                 <webdemo.log.level>INFO</webdemo.log.level>
+                <!-- rabbitmq配置 -->
+                <webdemo.rabbitmq.host>127.0.0.1</webdemo.rabbitmq.host>
+                <webdemo.rabbitmq.port>5672</webdemo.rabbitmq.port>
+                <webdemo.rabbitmq.username>root</webdemo.rabbitmq.username>
+                <webDemo.rabbitmq.password>666666</webDemo.rabbitmq.password>
                 <!-- 文件上传&下载配置 -->
                 <webdemo.file.upload.path>/export/data/upload/</webdemo.file.upload.path>
                 <webdemo.file.upload.maxsize>5242880</webdemo.file.upload.maxsize><!-- 文件大小限制为5M -->
@@ -101,7 +112,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.1.5.RELEASE</version>
+                <version>${springboot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -182,12 +193,17 @@
                 <artifactId>commons-collections</artifactId>
                 <version>3.2.2</version>
             </dependency>
-    
+            <!--rabbitmq-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
             <!--支持 Web 应用开发，包含 Tomcat 和 spring-mvc。 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
-                <version>2.1.5.RELEASE</version>
+                <version>${springboot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
