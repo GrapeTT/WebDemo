@@ -1,11 +1,10 @@
 package com.demo.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.demo.api.Message;
 import com.demo.base.BaseController;
-import com.demo.domain.User;
+import com.demo.entity.User;
 import com.demo.email.EmailClient;
-import com.demo.exception.CustomException;
-import com.demo.redis.RedisClient;
 import com.demo.service.UserService;
 import com.demo.tools.*;
 import org.apache.commons.lang3.StringUtils;
@@ -30,13 +29,13 @@ import java.util.*;
 public class UserController extends BaseController {
     @Resource
     private UserService userService;
-    
+
     @Resource
     private EmailClient emailClient;
-    
+
     //用于保存生成的验证码
     private static Map<String, String> VALIDATECODES = new HashMap<>();
-    
+
     /**
      * @Description：登录
      * @Author：涛哥
@@ -45,15 +44,17 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody Message login(@RequestBody User condition, HttpSession session, Model view) throws Exception {
         //校验账号、密码是否正确
-        String password = condition.getPassword();
-        password = RSAUtils.decrypt(password);
-        if(password != null) {
-            password = MD5Utils.encrypt(password);
-        } else {
-            return Message.failure("服务器异常，请稍后再试");
-        }
-        condition.setPassword(password);
-        User user = userService.selectOneByCondition(condition);
+//        String password = condition.getPassword();
+//        password = RSAUtils.decrypt(password);
+//        if(password != null) {
+//            password = MD5Utils.encrypt(password);
+//        } else {
+//            return Message.failure("服务器异常，请稍后再试");
+//        }
+//        condition.setPassword(password);
+        QueryWrapper<User> queryWrapper = new QueryWrapper();
+        queryWrapper.setEntity(condition);
+        User user = userService.getOne(queryWrapper);
         if(user == null) {
             return Message.failure("账号或密码错误");
         }
@@ -71,7 +72,7 @@ public class UserController extends BaseController {
         request.getSession().invalidate();
         return Message.success("登出成功");
     }
-    
+
     /**
      * @Description：获取验证码
      * @Author：涛哥
@@ -107,7 +108,7 @@ public class UserController extends BaseController {
         }, 300000);
         return Message.success("验证码已成功发至邮箱");
     }
-    
+
     /**
      * @Description：注册用户
      * @Author：涛哥
@@ -151,13 +152,13 @@ public class UserController extends BaseController {
         Date date = new Date();
         user.setCreateTime(date);
         user.setUpdateTime(date);
-        userService.insertEntry(user);
+        userService.save(user);
         //生成uid
         User newUser = userService.getUserByUsername(email);
         String uid = UidUtils.generate(newUser.getId());
         if(uid != null) {
             newUser.setUid(uid);
-            userService.updateByPrimaryKey(newUser);
+            userService.updateById(newUser);
         }
         //清除验证码
         VALIDATECODES.remove(email);

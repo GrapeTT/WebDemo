@@ -15,13 +15,13 @@
     <dependencies>
         <dependency>
             <groupId>com.demo</groupId>
-            <artifactId>WebDemo-dao</artifactId>
+            <artifactId>WebDemo-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!-- mybatis 分页插件 -->
         <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <groupId>com.demo</groupId>
+            <artifactId>WebDemo-mapper</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!--rabbitmq-->
         <dependency>

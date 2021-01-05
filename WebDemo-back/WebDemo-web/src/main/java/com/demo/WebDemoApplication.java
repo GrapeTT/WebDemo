@@ -16,7 +16,7 @@ import org.springframework.web.filter.CorsFilter;
  */
 @ImportResource("classpath:spring/spring-config-all.xml")
 @SpringBootApplication
-@MapperScan("com.demo.dao")
+@MapperScan("com.demo.mapper")
 @EnableScheduling//使定时任务生效
 public class WebDemoApplication extends SpringBootServletInitializer {
 

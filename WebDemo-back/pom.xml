@@ -14,10 +14,9 @@
 
     <!-- 项目模块列表,请根据项目情况增减 -->
     <modules>
-        <module>WebDemo-dao</module>
         <module>WebDemo-common</module>
+        <module>WebDemo-mapper</module>
         <module>WebDemo-service</module>
-        <module>WebDemo-domain</module>
         <module>WebDemo-web</module>
     </modules>
     
@@ -116,12 +115,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- 日志依赖 -->
+            <!-- lombok依赖 -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
+                <version>1.18.16</version>
                 <optional>true</optional>
             </dependency>
+            <!-- 日志依赖 -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -134,23 +135,21 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>8.0.16</version>
             </dependency>
-            <!-- mybatis依赖 -->
+            <!-- mybatis-plus依赖 -->
             <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>2.0.0</version>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.4.1</version>
             </dependency>
             <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis</artifactId>
-                <version>3.5.2</version>
-                <scope>compile</scope>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>3.4.1</version>
             </dependency>
-            <!-- mybatis 分页插件 -->
             <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>1.2.10</version>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>2.2</version>
             </dependency>
             <!-- 数据库连接池 -->
             <dependency>

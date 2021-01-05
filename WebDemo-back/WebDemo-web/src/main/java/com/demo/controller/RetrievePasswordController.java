@@ -2,9 +2,9 @@ package com.demo.controller;
 
 import com.demo.api.Message;
 import com.demo.base.BaseController;
-import com.demo.domain.User;
-import com.demo.service.UserService;
 import com.demo.email.EmailClient;
+import com.demo.entity.User;
+import com.demo.service.UserService;
 import com.demo.tools.MD5Utils;
 import com.demo.tools.RSAUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -31,13 +31,13 @@ import java.util.*;
 public class RetrievePasswordController extends BaseController {
     @Resource
     private UserService userService;
-    
+
     @Resource
     private EmailClient emailClient;
-    
+
     //用于保存生成的验证码
     private static Map<String, String> VALIDATECODES = new HashMap<>();
-    
+
     /**
      * @Description：获取验证码
      * @Author：涛哥
@@ -76,7 +76,7 @@ public class RetrievePasswordController extends BaseController {
         message.setData(user.getUid());
         return message;
     }
-    
+
     /**
      * @Description：重置密码
      * @Author：涛哥
@@ -106,7 +106,7 @@ public class RetrievePasswordController extends BaseController {
         User user = userService.getUserByUid(uid);
         user.setPassword(newPassword);
         user.setUpdateTime(new Date());
-        userService.updateByPrimaryKey(user);
+        userService.updateById(user);
         return Message.success("重置密码成功，请登录");
     }
 }

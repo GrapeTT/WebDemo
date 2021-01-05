@@ -1,56 +1,22 @@
 package com.demo.service.impl;
 
-import com.demo.base.BaseDao;
-import com.demo.base.impl.BaseServiceImpl;
-import com.demo.dao.UserDao;
-import com.demo.domain.User;
-import com.demo.domain.UserExample;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.demo.entity.User;
+import com.demo.mapper.UserMapper;
 import com.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-
 /**
- * @Author：涛
- * @Descripition：用户服务实现类
- * @Date：2018/3/23 16:44
+ * <p>
+ * 用户表 服务实现类
+ * </p>
+ *
+ * @author tao
+ * @since 2021-01-05
  */
 @Service
-public class UserServiceImpl extends BaseServiceImpl<User, UserExample> implements UserService {
-    @Resource
-    private UserDao userDao;
-    
-    @Override
-    public BaseDao<User, UserExample> getDao() {
-        return userDao;
-    }
-    
-    @Override
-    public UserExample getExample(User user) {
-        UserExample userExample = new UserExample();
-        UserExample.Criteria criteria = userExample.createCriteria();
-        if(user.getId() != null) {
-            criteria.andIdEqualTo(user.getId());
-        }
-        if(user.getUid() != null) {
-            criteria.andUidEqualTo(user.getUid());
-        }
-        if(user.getUsername() != null) {
-            criteria.andUsernameEqualTo(user.getUsername());
-        }
-        if(user.getPassword() != null) {
-            criteria.andPasswordEqualTo(user.getPassword());
-        }
-        if(user.getCreateTime() != null) {
-            criteria.andCreateTimeEqualTo(user.getCreateTime());
-        }
-        if(user.getUpdateTime() != null) {
-            criteria.andUpdateTimeEqualTo(user.getUpdateTime());
-        }
-        userExample.setOrderByClause("id asc");
-        return userExample;
-    }
-    
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     /**
      * @param username
      * @Description：判重
@@ -61,7 +27,9 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserExample> implemen
     public Boolean isRepeat(String username) {
         User condition = new User();
         condition.setUsername(username);
-        User user = selectOneByCondition(condition);
+        QueryWrapper<User> queryWrapper = new QueryWrapper();
+        queryWrapper.setEntity(condition);
+        User user = this.getOne(queryWrapper);
         if(user == null) {
             return false;
         }
@@ -76,9 +44,11 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserExample> implemen
      */
     @Override
     public User getUserByUid(String uid) {
-        User user = new User();
-        user.setUid(uid);
-        return selectOneByCondition(user);
+        User condition = new User();
+        condition.setUid(uid);
+        QueryWrapper<User> queryWrapper = new QueryWrapper();
+        queryWrapper.setEntity(condition);
+        return this.getOne(queryWrapper);
     }
     
     /**
@@ -89,8 +59,10 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserExample> implemen
      */
     @Override
     public User getUserByUsername(String username) {
-        User user = new User();
-        user.setUsername(username);
-        return selectOneByCondition(user);
+        User condition = new User();
+        condition.setUsername(username);
+        QueryWrapper<User> queryWrapper = new QueryWrapper();
+        queryWrapper.setEntity(condition);
+        return this.getOne(queryWrapper);
     }
 }
