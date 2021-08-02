@@ -3,12 +3,12 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     
-    <bean id="emailClient" class="com.demo.email.EmailClient">
-        <property name="host" value="${webdemo.email.host}"/>
-        <property name="port" value="${webdemo.email.port}"/>
-        <property name="sender" value="${webdemo.email.sender}"/>
-        <property name="isAuth" value="${webdemo.email.isAuth}"/>
-        <property name="authCode" value="${webdemo.email.authCode}"/>
+    <bean id="emailClient" class="com.demo.common.email.EmailClient" init-method="init">
+        <property name="host" value="${email.host}"/>
+        <property name="port" value="${email.port}"/>
+        <property name="sender" value="${email.sender}"/>
+        <property name="isAuth" value="${email.isAuth}"/>
+        <property name="authCode" value="${email.authCode}"/>
         <property name="title" value="WebDemo：验证码" />
     </bean>
 </beans>

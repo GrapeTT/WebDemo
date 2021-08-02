@@ -1,7 +1,7 @@
 package com.demo.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.demo.entity.User;
+import com.demo.dao.entity.User;
 
 /**
  * <p>

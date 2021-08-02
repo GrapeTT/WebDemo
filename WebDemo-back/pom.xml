@@ -15,7 +15,7 @@
     <!-- 项目模块列表,请根据项目情况增减 -->
     <modules>
         <module>WebDemo-common</module>
-        <module>WebDemo-mapper</module>
+        <module>WebDemo-dao</module>
         <module>WebDemo-service</module>
         <module>WebDemo-web</module>
     </modules>
@@ -33,6 +33,13 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <start-class>WebDemoApplication</start-class>
         <springboot.version>2.1.5.RELEASE</springboot.version>
+        <hutool.version>5.7.6</hutool.version>
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
+        <velocity.version>2.2</velocity.version>
+        <lombook.version>1.18.16</lombook.version>
+        <mysql-connector.version>8.0.16</mysql-connector.version>
+        <mail.version>1.4.7</mail.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
     </properties>
     
     <profiles>
@@ -43,31 +50,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <!-- mysql配置 -->
-                <webdemo.mysql.url>jdbc:MySql://127.0.0.1:3306/demo?characterEncoding=UTF-8&amp;serverTimezone=UTC</webdemo.mysql.url>
-                <webdemo.mysql.username>root</webdemo.mysql.username>
-                <webdemo.mysql.password>666666</webdemo.mysql.password>
-                <!-- redis配置 -->
-                <webdemo.redis.host>127.0.0.1</webdemo.redis.host>
-                <webdemo.redis.port>6379</webdemo.redis.port>
-                <webDemo.redis.password>666666</webDemo.redis.password>
-                <!-- 邮件配置 -->
-                <webdemo.email.host>smtp.qq.com</webdemo.email.host>
-                <webdemo.email.port>465</webdemo.email.port>
-                <webdemo.email.sender>swustlabmanager@qq.com</webdemo.email.sender>
-                <webdemo.email.isAuth>true</webdemo.email.isAuth>
-                <webdemo.email.authCode>eygofdqjpmsgbegh</webdemo.email.authCode>
-                <!-- 日志配置 -->
-                <webdemo.log.level>DEBUG</webdemo.log.level>
-                <!-- rabbitmq配置 -->
-                <webdemo.rabbitmq.host>127.0.0.1</webdemo.rabbitmq.host>
-                <webdemo.rabbitmq.port>5672</webdemo.rabbitmq.port>
-                <webdemo.rabbitmq.username>root</webdemo.rabbitmq.username>
-                <webDemo.rabbitmq.password>666666</webDemo.rabbitmq.password>
-                <!-- 文件上传&下载配置 -->
-                <webdemo.file.upload.path>/export/data/upload/</webdemo.file.upload.path>
-                <webdemo.file.upload.maxsize>5242880</webdemo.file.upload.maxsize><!-- 文件大小限制为5M -->
-                <webdemo.file.download.url.prefix>http://localhost/file/download/</webdemo.file.download.url.prefix>
+                <env>dev</env>
             </properties>
         </profile>
         <!-- 生产环境配置 -->
@@ -77,31 +60,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <!-- mysql配置 -->
-                <webdemo.mysql.url>jdbc:MySql://127.0.0.1:3306/demo?characterEncoding=UTF-8&amp;serverTimezone=UTC</webdemo.mysql.url>
-                <webdemo.mysql.username>root</webdemo.mysql.username>
-                <webdemo.mysql.password>666666</webdemo.mysql.password>
-                <!-- redis配置 -->
-                <webdemo.redis.host>120.79.60.67</webdemo.redis.host>
-                <webdemo.redis.port>6379</webdemo.redis.port>
-                <webDemo.redis.password>666666</webDemo.redis.password>
-                <!-- 邮件配置 -->
-                <webdemo.email.host>smtp.qq.com</webdemo.email.host>
-                <webdemo.email.port>465</webdemo.email.port>
-                <webdemo.email.sender>swustlabmanager@qq.com</webdemo.email.sender>
-                <webdemo.email.isAuth>true</webdemo.email.isAuth>
-                <webdemo.email.authCode>eygofdqjpmsgbegh</webdemo.email.authCode>
-                <!-- 日志配置 -->
-                <webdemo.log.level>INFO</webdemo.log.level>
-                <!-- rabbitmq配置 -->
-                <webdemo.rabbitmq.host>127.0.0.1</webdemo.rabbitmq.host>
-                <webdemo.rabbitmq.port>5672</webdemo.rabbitmq.port>
-                <webdemo.rabbitmq.username>root</webdemo.rabbitmq.username>
-                <webDemo.rabbitmq.password>666666</webDemo.rabbitmq.password>
-                <!-- 文件上传&下载配置 -->
-                <webdemo.file.upload.path>/export/data/upload/</webdemo.file.upload.path>
-                <webdemo.file.upload.maxsize>5242880</webdemo.file.upload.maxsize><!-- 文件大小限制为5M -->
-                <webdemo.file.download.url.prefix>http://localhost/file/download/</webdemo.file.download.url.prefix>
+                <env>product</env>
             </properties>
         </profile>
     </profiles>
@@ -119,78 +78,58 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.16</version>
+                <version>${lombok.version}</version>
                 <optional>true</optional>
-            </dependency>
-            <!-- 日志依赖 -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.7.26</version>
-                <scope>compile</scope>
             </dependency>
             <!-- MySQL依赖 -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.16</version>
+                <version>${mysql-connector.version}</version>
             </dependency>
             <!-- mybatis-plus依赖 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>3.4.1</version>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
-                <version>3.4.1</version>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>
-                <version>2.2</version>
+                <version>${velocity.version}</version>
             </dependency>
-            <!-- 数据库连接池 -->
+            <!-- hutool工具 -->
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>1.1.20</version>
-            </dependency>
-            <!-- json依赖 -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>1.2.60</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>5.1.8.RELEASE</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>2.9.8</version>
-                <scope>compile</scope>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
             <!-- 邮件服务依赖 -->
             <dependency>
                 <groupId>javax.mail</groupId>
                 <artifactId>mail</artifactId>
-                <version>1.4.7</version>
+                <version>${mail.version}</version>
             </dependency>
             <!-- Apache工具 -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>3.9</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <version>3.2.2</version>
+                <version>${commons-lang3.version}</version>
             </dependency>
             <!--rabbitmq-->
             <dependency>
@@ -213,6 +152,12 @@
     </dependencyManagement>
     
     <build>
+        <!-- 指定filter,根据最终profile下的env属性获取对应的配置文件 -->
+        <filters>
+            <filter>../filters/${env}/application.properties</filter>
+            <filter>../filters/${env}/important.properties</filter>
+            <filter>../filters/${env}/jsf-consumer.properties</filter>
+        </filters>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

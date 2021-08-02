@@ -4,10 +4,10 @@
  */
 package com.demo.controller;
 
-import com.demo.api.Message;
+import cn.hutool.core.collection.CollectionUtil;
+import com.demo.common.api.Message;
 import com.demo.base.BaseController;
-import com.demo.tools.DateUtils;
-import org.apache.commons.collections.CollectionUtils;
+import com.demo.common.tools.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -59,7 +59,7 @@ public class FileController extends BaseController {
     public @ResponseBody Message upload(HttpServletRequest request) {
         try {
             List<MultipartFile> fileList = ((MultipartHttpServletRequest) request).getFiles("file");
-            if (CollectionUtils.isEmpty(fileList)) {
+            if (CollectionUtil.isEmpty(fileList)) {
                 return Message.failure("没有任何待上传的文件");
             }
             if(fileList.size() > 10) {

@@ -20,7 +20,7 @@
         </dependency>
         <dependency>
             <groupId>com.demo</groupId>
-            <artifactId>WebDemo-mapper</artifactId>
+            <artifactId>WebDemo-dao</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!--rabbitmq-->

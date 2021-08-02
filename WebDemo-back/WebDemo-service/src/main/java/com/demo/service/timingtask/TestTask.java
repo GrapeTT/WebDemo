@@ -4,9 +4,8 @@
  */
 package com.demo.service.timingtask;
 
-import com.demo.tools.DateUtils;
+import com.demo.common.tools.DateUtils;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.Date;
 

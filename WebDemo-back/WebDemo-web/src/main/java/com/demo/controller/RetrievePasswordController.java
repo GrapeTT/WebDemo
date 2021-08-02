@@ -1,12 +1,12 @@
 package com.demo.controller;
 
-import com.demo.api.Message;
+import com.demo.common.api.Message;
 import com.demo.base.BaseController;
-import com.demo.email.EmailClient;
-import com.demo.entity.User;
+import com.demo.common.email.EmailClient;
+import com.demo.dao.entity.User;
 import com.demo.service.UserService;
-import com.demo.tools.MD5Utils;
-import com.demo.tools.RSAUtils;
+import com.demo.common.tools.MD5Utils;
+import com.demo.common.tools.RSAUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;

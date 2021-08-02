@@ -1,7 +1,7 @@
 package com.demo.interceptor;
 
 import com.demo.exception.CustomException;
-import com.demo.tools.SessionUtils;
+import com.demo.common.tools.SessionUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 

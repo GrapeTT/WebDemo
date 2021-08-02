@@ -1,7 +1,6 @@
 package com.demo.exception;
 
-import com.demo.api.Message;
-import org.springframework.stereotype.Controller;
+import com.demo.common.api.Message;
 import org.springframework.ui.Model;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;

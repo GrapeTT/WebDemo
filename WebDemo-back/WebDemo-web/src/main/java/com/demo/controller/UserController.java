@@ -1,12 +1,15 @@
 package com.demo.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.demo.api.Message;
+import com.demo.common.api.Message;
 import com.demo.base.BaseController;
-import com.demo.entity.User;
-import com.demo.email.EmailClient;
+import com.demo.common.tools.DateUtils;
+import com.demo.common.tools.MD5Utils;
+import com.demo.common.tools.RSAUtils;
+import com.demo.common.tools.UidUtils;
+import com.demo.dao.entity.User;
+import com.demo.common.email.EmailClient;
 import com.demo.service.UserService;
-import com.demo.tools.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 

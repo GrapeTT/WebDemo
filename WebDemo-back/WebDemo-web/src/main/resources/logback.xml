@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
 
-    <property name="LOG_HOME" value="/export/Logs/WebDemo"/>
+    <property name="LOG_HOME" value="${logging.path}"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
@@ -50,13 +50,14 @@
         </layout>
     </appender>
 
-    <logger name="com.demo" level="${webdemo.log.level}" additivity="false">
-        <appender-ref ref="SERVICE_FILE"/>
-    </logger>
-
     <!-- 根据实际情况修改日志级别，一般线上是INFO以上 -->
-    <root level="${webdemo.log.level}" additivity="true">
+    <!-- 级别依次为【从高到低】：FATAL > ERROR > WARN > INFO > DEBUG > TRACE  -->
+    <root level="${logging.level.root}" additivity="true">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="CONSOLE_FILE"/>
     </root>
+
+    <logger name="com.demo" level="${logging.level.root}" additivity="false">
+        <appender-ref ref="SERVICE_FILE"/>
+    </logger>
 </configuration>

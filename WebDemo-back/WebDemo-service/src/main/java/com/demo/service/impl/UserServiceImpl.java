@@ -1,10 +1,12 @@
 package com.demo.service.impl;
 
+import cn.hutool.log.Log;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.demo.entity.User;
-import com.demo.mapper.UserMapper;
+import com.demo.dao.entity.User;
+import com.demo.dao.mapper.UserMapper;
 import com.demo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +19,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+    private static final Log LOG = Log.get();
+    
+    @Autowired
+    private UserMapper userMapper;
+    
     /**
      * @param username
      * @Description：判重
@@ -29,7 +36,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         condition.setUsername(username);
         QueryWrapper<User> queryWrapper = new QueryWrapper();
         queryWrapper.setEntity(condition);
-        User user = this.getOne(queryWrapper);
+        User user = userMapper.selectOne(queryWrapper);
         if(user == null) {
             return false;
         }
@@ -48,7 +55,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         condition.setUid(uid);
         QueryWrapper<User> queryWrapper = new QueryWrapper();
         queryWrapper.setEntity(condition);
-        return this.getOne(queryWrapper);
+        return userMapper.selectOne(queryWrapper);
     }
     
     /**
@@ -63,6 +70,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         condition.setUsername(username);
         QueryWrapper<User> queryWrapper = new QueryWrapper();
         queryWrapper.setEntity(condition);
-        return this.getOne(queryWrapper);
+        return userMapper.selectOne(queryWrapper);
     }
 }
