@@ -1,6 +1,7 @@
 package com.demo.web.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.demo.common.api.Message;
 import com.demo.web.base.BaseController;
 import com.demo.common.tools.DateUtils;
@@ -54,9 +55,7 @@ public class UserController extends BaseController {
             return Message.failure("服务器异常，请稍后再试");
         }
         condition.setPassword(password);
-        QueryWrapper<User> queryWrapper = new QueryWrapper();
-        queryWrapper.setEntity(condition);
-        User user = userService.getOne(queryWrapper);
+        User user = userService.getOne(Wrappers.query(condition));
         if(user == null) {
             return Message.failure("账号或密码错误");
         }
