@@ -150,7 +150,7 @@ public class MybatisGenerator {
         strategy.setEntityTableFieldAnnotationEnable(true);
         strategy.setRestControllerStyle(true);
         // 父类控制器,没有就不用设置
-        strategy.setSuperControllerClass("com.demo.base.BaseController");
+        strategy.setSuperControllerClass("com.demo.web.base.BaseController");
         // 写于父类中的公共字段
         strategy.setSuperEntityColumns("id");
         // 表名，多个英文逗号分割
