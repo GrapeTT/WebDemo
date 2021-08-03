@@ -46,14 +46,14 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody Message<Void> login(@RequestBody User condition, HttpSession session) throws Exception {
         //校验账号、密码是否正确
-//        String password = condition.getPassword();
-//        password = RSAUtils.decrypt(password);
-//        if(password != null) {
-//            password = MD5Utils.encrypt(password);
-//        } else {
-//            return Message.failure("服务器异常，请稍后再试");
-//        }
-//        condition.setPassword(password);
+        String password = condition.getPassword();
+        password = RSAUtils.decrypt(password);
+        if(password != null) {
+            password = MD5Utils.encrypt(password);
+        } else {
+            return Message.failure("服务器异常，请稍后再试");
+        }
+        condition.setPassword(password);
         QueryWrapper<User> queryWrapper = new QueryWrapper();
         queryWrapper.setEntity(condition);
         User user = userService.getOne(queryWrapper);
