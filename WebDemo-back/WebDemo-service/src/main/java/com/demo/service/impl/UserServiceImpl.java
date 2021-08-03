@@ -1,6 +1,6 @@
 package com.demo.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.demo.dao.domain.User;
 import com.demo.dao.mapper.UserMapper;
@@ -34,9 +34,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public Boolean isRepeat(String username) {
         User condition = new User();
         condition.setUsername(username);
-        QueryWrapper<User> queryWrapper = new QueryWrapper();
-        queryWrapper.setEntity(condition);
-        User user = userMapper.selectOne(queryWrapper);
+        User user = userMapper.selectOne(Wrappers.query(condition));
         if(user == null) {
             return false;
         }
@@ -53,9 +51,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public User getUserByUid(String uid) {
         User condition = new User();
         condition.setUid(uid);
-        QueryWrapper<User> queryWrapper = new QueryWrapper();
-        queryWrapper.setEntity(condition);
-        return userMapper.selectOne(queryWrapper);
+        return userMapper.selectOne(Wrappers.query(condition));
     }
     
     /**
@@ -68,8 +64,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public User getUserByUsername(String username) {
         User condition = new User();
         condition.setUsername(username);
-        QueryWrapper<User> queryWrapper = new QueryWrapper();
-        queryWrapper.setEntity(condition);
-        return userMapper.selectOne(queryWrapper);
+        return userMapper.selectOne(Wrappers.query(condition));
     }
 }
