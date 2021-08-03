@@ -1,8 +1,10 @@
 package com.demo;
 
 import org.mybatis.spring.annotation.MapperScan;
+import cn.hutool.log.Log;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
@@ -31,9 +33,16 @@ import org.springframework.web.filter.CorsFilter;
 @MapperScan("com.demo.dao.mapper")
 @EnableScheduling//使定时任务生效
 public class WebDemoApplication extends SpringBootServletInitializer {
+    private static final Log LOG = Log.get();
 
     public static void main(String[] args) {
         SpringApplication.run(WebDemoApplication.class, args);
+        LOG.info("Server start up！");
+    }
+    
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(WebDemoApplication.class);
     }
     
     /**

@@ -2,8 +2,7 @@ package com.demo.common.tools;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import cn.hutool.log.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.List;
  * @Version：1.0
  */
 public class DateUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DateUtils.class);
+    private static final Log LOG = Log.get();
     
     /**
      * @Description：Date转String（yyyy-MM-dd HH:mm:ss）
@@ -29,7 +28,7 @@ public class DateUtils {
      */
     public static String format(Date date) {
         if(date == null) {
-            LOGGER.error("转换时间失败，date=" + date);
+            LOG.error("转换时间失败，date=" + date);
             return null;
         }
         return DateFormatUtils.format(date, "yyyy-MM-dd HH:mm:ss");
@@ -42,7 +41,7 @@ public class DateUtils {
      */
     public static String format(Date date, String pattern) {
         if(date == null || StringUtils.isEmpty(pattern)) {
-            LOGGER.error("转换时间失败，date=" + date + "，pattern=" + pattern);
+            LOG.error("转换时间失败，date=" + date + "，pattern=" + pattern);
             return null;
         }
         return DateFormatUtils.format(date, pattern);
@@ -55,7 +54,7 @@ public class DateUtils {
      */
     public static String formatDate(Date date) {
         if(date == null) {
-            LOGGER.error("转换时间失败，date=" + date);
+            LOG.error("转换时间失败，date=" + date);
             return null;
         }
         return DateFormatUtils.format(date, "yyyy-MM-dd");
@@ -68,14 +67,14 @@ public class DateUtils {
      */
     public static Date parse(String date) {
         if(StringUtils.isEmpty(date)) {
-            LOGGER.error("转换时间失败，date=" + date);
+            LOG.error("转换时间失败，date=" + date);
             return null;
         }
         SimpleDateFormat simpleDateFormat = getSimpleDateFormat(date);
         try {
             return simpleDateFormat.parse(date);
         } catch (Exception e) {
-            LOGGER.error("转换时间失败，date=" + date, e);
+            LOG.error("转换时间失败，date=" + date, e);
         }
         return null;
     }
@@ -106,7 +105,7 @@ public class DateUtils {
      */
     public static String dateToTimeString(Date date) {
         if(date == null) {
-            LOGGER.error("转换时间失败，date=null");
+            LOG.error("转换时间失败，date=null");
             return null;
         }
         return DateFormatUtils.format(date, "HH:mm:ss");
@@ -119,7 +118,7 @@ public class DateUtils {
      */
     public static Integer getDaysDistance(Date start, Date end) {
         if(start == null || end == null) {
-            LOGGER.error("计算失败，start=" + start + "，end=" + end);
+            LOG.error("计算失败，start=" + start + "，end=" + end);
             return null;
         }
         String startString = formatDate(start) + " 00:00:00";
@@ -166,7 +165,7 @@ public class DateUtils {
      */
     public static Boolean isEqual(Date date1, Date date2) {
         if(date1 == null || date2 == null) {
-            LOGGER.error("判断失败，date1=" + date1 + "，date2=" + date2);
+            LOG.error("判断失败，date1=" + date1 + "，date2=" + date2);
             return null;
         }
         String date1String = formatDate(date1);
@@ -184,7 +183,7 @@ public class DateUtils {
      */
     public static Boolean before(Date date1, Date date2) {
         if(date1 == null || date2 == null) {
-            LOGGER.error("判断失败，date1=" + date1 + "，date2=" + date2);
+            LOG.error("判断失败，date1=" + date1 + "，date2=" + date2);
             return null;
         }
         String date1String = formatDate(date1) + " 24:00:00";
@@ -204,7 +203,7 @@ public class DateUtils {
      */
     public static Boolean after(Date date1, Date date2) {
         if(date1 == null || date2 == null) {
-            LOGGER.error("判断失败，date1=" + date1 + "，date2=" + date2);
+            LOG.error("判断失败，date1=" + date1 + "，date2=" + date2);
             return null;
         }
         String date1String = formatDate(date1) + " 24:00:00";

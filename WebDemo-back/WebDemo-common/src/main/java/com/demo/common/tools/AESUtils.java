@@ -1,8 +1,7 @@
 package com.demo.common.tools;
 
 import com.sun.org.apache.xml.internal.security.utils.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import cn.hutool.log.Log;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
@@ -16,7 +15,7 @@ import java.nio.charset.StandardCharsets;
  * @Version：1.0
  */
 public class AESUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AESUtils.class);
+    private static final Log LOG = Log.get();
     
     //AES KEY（必须为16位16进制字符串）
     private static String KEY = "1234567890abcdef";
@@ -38,7 +37,7 @@ public class AESUtils {
             byte [] encode_value = cipher.doFinal(byte_value); //密码器加密数据
             return Base64.encode(encode_value); //将加密后的数据转换为字符串返回
         } catch (Exception e) {
-            LOGGER.error("AES加密失败", e);
+            LOG.error("AES加密失败", e);
             return null;
         }
     }
@@ -58,7 +57,7 @@ public class AESUtils {
             byte [] byte_value = cipher.doFinal(encode_value); //密码器解密数据
             return new String(byte_value,StandardCharsets.UTF_8); //将解密后的数据转换为字符串返回
         } catch (Exception e) {
-            LOGGER.error("AES解密失败", e);
+            LOG.error("AES解密失败", e);
             return null;
         }
     }

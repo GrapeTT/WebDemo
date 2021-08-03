@@ -1,8 +1,7 @@
 package com.demo.common.tools;
 
+import cn.hutool.log.Log;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -24,7 +23,7 @@ import java.util.Map;
  * @Version：1.0
  */
 public class RSAUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RSAUtils.class);
+    private static final Log LOG = Log.get();
     
     //指定加密算法为RSA
     private static final String ALGORITHM = "RSA";
@@ -91,7 +90,7 @@ public class RSAUtils {
             keyMap.put("PublicKey", new BASE64Encoder().encodeBuffer(publicKey.getEncoded()));
             keyMap.put("PrivateKey", new BASE64Encoder().encodeBuffer(privateKey.getEncoded()));
         } catch (Exception e) {
-            LOGGER.error("生成RSA公私钥对失败", e);
+            LOG.error("生成RSA公私钥对失败", e);
         }
         return keyMap;
     }
@@ -103,7 +102,7 @@ public class RSAUtils {
      */
     public static String encrypt(String source, String key) throws Exception {
         if(StringUtils.isEmpty(source) || StringUtils.isEmpty(key)) {
-            LOGGER.warn("RSA加密异常，source=" + source + "，key=" + key);
+            LOG.warn("RSA加密异常，source=" + source + "，key=" + key);
             return null;
         }
         Key publicKey = getPublicKey(key);
@@ -124,7 +123,7 @@ public class RSAUtils {
      */
     public static String encrypt(String source) throws Exception {
         if(StringUtils.isEmpty(source)) {
-            LOGGER.warn("RSA加密异常，source=" + source);
+            LOG.warn("RSA加密异常，source=" + source);
             return null;
         }
         return encrypt(source, PUBLIC_KEY);
@@ -137,7 +136,7 @@ public class RSAUtils {
      */
     public static String decrypt(String source, String key) throws Exception {
         if(StringUtils.isEmpty(source) || StringUtils.isEmpty(key)) {
-            LOGGER.warn("RSA解密异常，source=" + source + "，key=" + key);
+            LOG.warn("RSA解密异常，source=" + source + "，key=" + key);
             return null;
         }
         Key privateKey = getPrivateKey(key);
@@ -151,7 +150,7 @@ public class RSAUtils {
             byte[] resultBytes = cipher.doFinal(sourceBytes);
             return new String(resultBytes);
         }catch (Exception e){
-            LOGGER.error("RSA解密失败", e);
+            LOG.error("RSA解密失败", e);
             return null;
         }
     }
@@ -163,7 +162,7 @@ public class RSAUtils {
      */
     public static String decrypt(String source) throws Exception {
         if(StringUtils.isEmpty(source)) {
-            LOGGER.warn("RSA解密异常，source=" + source);
+            LOG.warn("RSA解密异常，source=" + source);
             return null;
         }
         return decrypt(source, PRIVATE_KEY);

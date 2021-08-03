@@ -1,9 +1,9 @@
 package com.demo.common.email;
 
+import cn.hutool.log.Log;
 import com.demo.common.tools.DateUtils;
 import org.apache.commons.lang3.RandomUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -18,7 +18,7 @@ import java.util.Properties;
  * @Version：1.0
  */
 public class EmailClient {
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmailClient.class);
+    private static final Log LOG = Log.get();
     
     //发送邮件的主机
     private String host;
@@ -103,7 +103,7 @@ public class EmailClient {
             Transport.send(message);
             return validateCode;
         }catch (Exception e) {
-            LOGGER.error("发送验证码邮件失败，receiver=" + receiver, e);
+            LOG.error("发送验证码邮件失败，receiver=" + receiver, e);
             return null;
         }
     }

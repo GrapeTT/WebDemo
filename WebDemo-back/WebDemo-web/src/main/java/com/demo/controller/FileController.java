@@ -98,7 +98,7 @@ public class FileController extends BaseController {
                     //保存文件
                     FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(filePath));
                 } catch (Exception e) {
-                    LOGGER.error("上传单个文件失败，fileName=" + fileName);
+                    LOG.error("上传单个文件失败，fileName=" + fileName);
                     fileMap.put(fileName, "服务器内部错误，上传失败");
                 }
                 fileMap.put(fileName, URL_PREFIX + folderName + "/" + fileName);
@@ -108,7 +108,7 @@ public class FileController extends BaseController {
             message.setMessage("文件总数：" + fileList.size() + "，上传成功：" + successCount + "，上传失败：" + (fileList.size() - successCount));
             return message;
         } catch (Exception e) {
-            LOGGER.error("文件上传失败", e);
+            LOG.error("文件上传失败", e);
             return Message.failure("500", "服务器内部错误");
         }
     }
@@ -144,7 +144,7 @@ public class FileController extends BaseController {
                 res = inputStream.read(buffer);
             }
         } catch (Exception e) {
-            LOGGER.error("下载文件失败，folderName=" + folderName + "，fileName=" + fileName, e);
+            LOG.error("下载文件失败，folderName=" + folderName + "，fileName=" + fileName, e);
         } finally {
             try {
                 if(inputStream != null) {
@@ -155,7 +155,7 @@ public class FileController extends BaseController {
                     outputStream.close();
                 }
             } catch (Exception e) {
-                LOGGER.error("关闭下载文件流失败", e);
+                LOG.error("关闭下载文件流失败", e);
             }
         }
     }

@@ -1,7 +1,6 @@
 package com.demo.common.tools;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import cn.hutool.log.Log;
 
 import java.util.Calendar;
 
@@ -14,7 +13,7 @@ import java.util.Calendar;
  * @Version：1.0
  */
 public class UidUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UidUtils.class);
+    private static final Log LOG = Log.get();
     
     //用于填充8位Uid
     private static String[] FILLSTRING = {"000000", "00000", "0000", "000", "00", "0", ""};
@@ -26,7 +25,7 @@ public class UidUtils {
      */
     public static String generate(Long id) {
         if (id == null) {
-            LOGGER.error("生成uid失败，id为null");
+            LOG.error("生成uid失败，id为null");
             return null;
         }
         Calendar date = Calendar.getInstance();

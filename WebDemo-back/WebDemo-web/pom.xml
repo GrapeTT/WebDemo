@@ -23,11 +23,6 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!-- MySQL依赖 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
         <!--支持 Web 应用开发，包含 Tomcat 和 spring-mvc。 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

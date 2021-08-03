@@ -1,11 +1,11 @@
 package com.demo.service.impl;
 
-import cn.hutool.log.Log;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.demo.dao.entity.User;
+import com.demo.dao.domain.User;
 import com.demo.dao.mapper.UserMapper;
 import com.demo.service.UserService;
+import cn.hutool.log.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.demo.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.demo.dao.entity.User;
+import com.demo.dao.domain.User;
 
 /**
  * <p>

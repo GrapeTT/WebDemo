@@ -1,7 +1,6 @@
 package com.demo.base;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import cn.hutool.log.Log;
 
 /**
  * @Name：BaseController
@@ -12,5 +11,5 @@ import org.slf4j.LoggerFactory;
  * @Version：1.0
  */
 public class BaseController {
-    public static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
+    public static final Log LOG = Log.get();
 }

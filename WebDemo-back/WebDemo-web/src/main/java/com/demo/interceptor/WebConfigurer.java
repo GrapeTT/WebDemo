@@ -15,11 +15,11 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 拦截所有请求，判断是否需要登录，排除静态资源请求
-        registry.addInterceptor(LoginInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(loginInterceptor()).addPathPatterns("/**");
     }
     
     @Bean
-    public LoginInterceptor LoginInterceptor() {
+    public LoginInterceptor loginInterceptor() {
         return new LoginInterceptor();
     }
 }

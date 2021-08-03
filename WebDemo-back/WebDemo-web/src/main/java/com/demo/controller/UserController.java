@@ -7,7 +7,7 @@ import com.demo.common.tools.DateUtils;
 import com.demo.common.tools.MD5Utils;
 import com.demo.common.tools.RSAUtils;
 import com.demo.common.tools.UidUtils;
-import com.demo.dao.entity.User;
+import com.demo.dao.domain.User;
 import com.demo.common.email.EmailClient;
 import com.demo.service.UserService;
 import org.apache.commons.lang3.StringUtils;

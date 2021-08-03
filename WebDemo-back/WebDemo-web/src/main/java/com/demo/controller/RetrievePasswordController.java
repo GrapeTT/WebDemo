@@ -3,7 +3,7 @@ package com.demo.controller;
 import com.demo.common.api.Message;
 import com.demo.base.BaseController;
 import com.demo.common.email.EmailClient;
-import com.demo.dao.entity.User;
+import com.demo.dao.domain.User;
 import com.demo.service.UserService;
 import com.demo.common.tools.MD5Utils;
 import com.demo.common.tools.RSAUtils;

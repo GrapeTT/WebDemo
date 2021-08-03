@@ -1,4 +1,4 @@
-package com.demo.exception;
+package com.demo.common.exception;
 
 /**
  * @Name：CustomException
@@ -8,20 +8,20 @@ package com.demo.exception;
  * @Date：2018/4/7 14:06
  * @Version：1.0
  */
-public class CustomException  extends Exception{
+public class AppException extends Exception{
     //编码
     private String code= "500";
     //异常信息
     private String message;
     
-    public CustomException() {}
+    public AppException() {}
     
-    public CustomException(String message) {
+    public AppException(String message) {
         super(message);
         this.message = message;
     }
     
-    public CustomException(String code, String message) {
+    public AppException(String code, String message) {
         super(message);
         this.code = code;
         this.message = message;

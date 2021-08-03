@@ -1,7 +1,6 @@
 package com.demo.common.tools;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import cn.hutool.log.Log;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpSession;
  * @Version：1.0
  */
 public class SessionUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SessionUtils.class);
+    private static final Log LOG = Log.get();
     
     /**
      * @Description：获取uid

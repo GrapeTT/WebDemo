@@ -36,7 +36,6 @@
         <hutool.version>5.7.6</hutool.version>
         <mybatis-plus.version>3.4.1</mybatis-plus.version>
         <velocity.version>2.2</velocity.version>
-        <lombook.version>1.18.16</lombook.version>
         <mysql-connector.version>8.0.16</mysql-connector.version>
         <mail.version>1.4.7</mail.version>
         <commons-lang3.version>3.9</commons-lang3.version>
@@ -74,13 +73,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- lombok依赖 -->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-                <optional>true</optional>
-            </dependency>
             <!-- MySQL依赖 -->
             <dependency>
                 <groupId>mysql</groupId>
@@ -90,17 +82,7 @@
             <!-- mybatis-plus依赖 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-annotation</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-extension</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
             <dependency>
