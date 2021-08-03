@@ -1,4 +1,4 @@
-package com.demo.interceptor;
+package com.demo.web.interceptor;
 
 import com.demo.common.exception.AppException;
 import com.demo.common.tools.SessionUtils;

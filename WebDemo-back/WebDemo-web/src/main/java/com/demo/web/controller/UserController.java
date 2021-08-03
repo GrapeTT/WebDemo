@@ -1,8 +1,8 @@
-package com.demo.controller;
+package com.demo.web.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.demo.common.api.Message;
-import com.demo.base.BaseController;
+import com.demo.web.base.BaseController;
 import com.demo.common.tools.DateUtils;
 import com.demo.common.tools.MD5Utils;
 import com.demo.common.tools.RSAUtils;

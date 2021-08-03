@@ -1,4 +1,4 @@
-package com.demo;
+package com.demo.web;
 
 import org.mybatis.spring.annotation.MapperScan;
 import cn.hutool.log.Log;

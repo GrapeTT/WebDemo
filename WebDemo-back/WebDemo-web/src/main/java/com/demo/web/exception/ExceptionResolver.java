@@ -1,4 +1,4 @@
-package com.demo.exception;
+package com.demo.web.exception;
 
 import com.demo.common.api.Message;
 import com.demo.common.exception.AppException;

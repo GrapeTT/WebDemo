@@ -1,4 +1,4 @@
-package com.demo.base;
+package com.demo.web.base;
 
 import cn.hutool.log.Log;
 
