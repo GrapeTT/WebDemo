@@ -10,7 +10,6 @@ import com.demo.common.tools.RSAUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,7 +43,7 @@ public class RetrievePasswordController extends BaseController {
      * @Time：2019/3/28 19:40
      */
     @RequestMapping(value = "/getValidateCode", method = RequestMethod.POST)
-    public @ResponseBody Message getValidateCode( @Param("email") String email, Model view) throws Exception {
+    public @ResponseBody Message<String> getValidateCode( @Param("email") String email) throws Exception {
         if(StringUtils.isEmpty(email)) {
             return Message.failure("系统异常，请稍后再试");
         }
@@ -72,9 +71,7 @@ public class RetrievePasswordController extends BaseController {
                 timer.cancel();
             }
         }, 300000);
-        Message message = Message.success("验证码已成功发至邮箱");
-        message.setData(user.getUid());
-        return message;
+       return Message.success("验证码已成功发至邮箱", user.getUid());
     }
 
     /**
@@ -83,7 +80,7 @@ public class RetrievePasswordController extends BaseController {
      * @Time：2019/3/28 19:57
      */
     @RequestMapping(value = "/reset", method = RequestMethod.POST)
-    public @ResponseBody Message resetPassword(@Param("email") String email, @Param("userValidateCode") String userValidateCode, @Param("uid") String uid, @Param("newPassword") String newPassword, Model view) throws Exception {
+    public @ResponseBody Message<Void> resetPassword(@Param("email") String email, @Param("userValidateCode") String userValidateCode, @Param("uid") String uid, @Param("newPassword") String newPassword) throws Exception {
         if(StringUtils.isEmpty(email) || StringUtils.isEmpty(userValidateCode) || StringUtils.isEmpty(uid) || StringUtils.isEmpty(newPassword)) {
             return Message.failure("系统异常，请稍后再试");
         }

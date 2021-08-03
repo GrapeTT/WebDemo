@@ -14,7 +14,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -45,7 +44,7 @@ public class UserController extends BaseController {
      * @Time：2019/3/6 16:54
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public @ResponseBody Message login(@RequestBody User condition, HttpSession session, Model view) throws Exception {
+    public @ResponseBody Message<Void> login(@RequestBody User condition, HttpSession session) throws Exception {
         //校验账号、密码是否正确
 //        String password = condition.getPassword();
 //        password = RSAUtils.decrypt(password);
@@ -71,7 +70,7 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public @ResponseBody Message logout(HttpServletRequest request) throws Exception {
+    public @ResponseBody Message<Void> logout(HttpServletRequest request) throws Exception {
         request.getSession().invalidate();
         return Message.success("登出成功");
     }
@@ -82,7 +81,7 @@ public class UserController extends BaseController {
      * @Time：2019/4/15 1:01
      */
     @RequestMapping(value = "/getValidateCode", method = RequestMethod.POST)
-    public @ResponseBody Message getValidateCode(@Param("email") String email, Model view) throws Exception {
+    public @ResponseBody Message<Void> getValidateCode(@Param("email") String email) throws Exception {
         if(StringUtils.isEmpty(email)) {
             return Message.failure("系统异常，请稍后再试");
         }
@@ -118,7 +117,7 @@ public class UserController extends BaseController {
      * @Time：2019/4/15 2:20
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public @ResponseBody Message register(User user, String userValidateCode, HttpSession session) throws Exception {
+    public @ResponseBody Message<Void> register(User user, String userValidateCode, HttpSession session) throws Exception {
         if(user == null || StringUtils.isEmpty(user.getUsername()) || StringUtils.isEmpty(user.getPassword())) {
             return Message.failure("对不起，您没有权限");
         }
