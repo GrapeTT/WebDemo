@@ -5,8 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import org.apache.commons.lang3.time.DateUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import cn.hutool.log.Log;
 import org.springframework.boot.jackson.JsonComponent;
 
 import java.io.IOException;
@@ -23,7 +22,7 @@ import java.util.Date;
  */
 @JsonComponent
 public class DateConverter extends JsonDeserializer<Date> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DateConverter.class);
+    private static final Log LOG = Log.get();
     
     private String[] patterns = {"yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd"};
     
@@ -34,7 +33,7 @@ public class DateConverter extends JsonDeserializer<Date> {
         try {
             date = DateUtils.parseDate(dateString, patterns);
         } catch (ParseException e) {
-            LOGGER.error("转换日期失败，date=" + dateString, e);
+            LOG.error("转换日期失败，date=" + dateString, e);
             //转换失败返回空
             return null;
         }
