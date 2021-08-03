@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2015 www.jd.com All rights reserved.
- * 本软件源代码版权归京东智能集团所有,未经许可不得任意复制与传播.
- */
 package com.demo.dao.generator;
 
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -19,11 +15,12 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * <b>描述：</b> 代码生成器<br/>
+ * <p>
+ * 代码生成器
+ * </p>
  *
- * @author <b>作者：</b> wutao91@jd.com<br/>
- * @date <b>时间：</b> 2021/1/5 19:45<br/>
- * <b>Copyright (c)</b> 2015-2021京东智能-版权所有<br/>
+ * @author tao
+ * @since 2021-08-03
  */
 public class MybatisGenerator {
     

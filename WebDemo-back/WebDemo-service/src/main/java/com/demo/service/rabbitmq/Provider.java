@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2015 www.jd.com All rights reserved.
- * 本软件源代码版权归京东智能集团所有,未经许可不得任意复制与传播.
- */
 package com.demo.service.rabbitmq;
 
 import cn.hutool.log.Log;
