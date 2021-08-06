@@ -146,7 +146,7 @@ public class MybatisGenerator {
         // 父类实体，没有就不用设置
         strategy.setSuperEntityClass("com.demo.dao.base.BaseEntity");
         //【实体】是否为lombok模型（默认 false）
-        strategy.setEntityLombokModel(true);
+        strategy.setEntityLombokModel(false);
         strategy.setEntityTableFieldAnnotationEnable(true);
         strategy.setRestControllerStyle(true);
         // 父类控制器,没有就不用设置
