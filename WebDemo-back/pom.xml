@@ -138,7 +138,6 @@
         <filters>
             <filter>../filters/${env}/application.properties</filter>
             <filter>../filters/${env}/important.properties</filter>
-            <filter>../filters/${env}/jsf-consumer.properties</filter>
         </filters>
         <resources>
             <resource>
