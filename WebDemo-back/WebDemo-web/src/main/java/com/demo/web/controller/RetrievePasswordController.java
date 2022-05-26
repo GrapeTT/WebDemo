@@ -1,6 +1,6 @@
 package com.demo.web.controller;
 
-import com.demo.common.api.Message;
+import com.demo.api.model.Message;
 import com.demo.web.base.BaseController;
 import com.demo.common.email.EmailClient;
 import com.demo.dao.domain.User;

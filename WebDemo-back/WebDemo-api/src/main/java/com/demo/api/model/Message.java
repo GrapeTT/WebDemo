@@ -1,4 +1,4 @@
-package com.demo.common.api;
+package com.demo.api.model;
 
 /**
  * @Name：Message

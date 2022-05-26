@@ -1,6 +1,6 @@
 package com.demo.web.exception;
 
-import com.demo.common.api.Message;
+import com.demo.api.model.Message;
 import com.demo.common.exception.AppException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;

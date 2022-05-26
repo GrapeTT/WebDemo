@@ -1,7 +1,7 @@
 package com.demo.web.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.demo.common.api.Message;
+import com.demo.api.model.Message;
 import com.demo.web.base.BaseController;
 import com.demo.common.tools.DateUtils;
 import org.apache.commons.lang3.StringUtils;

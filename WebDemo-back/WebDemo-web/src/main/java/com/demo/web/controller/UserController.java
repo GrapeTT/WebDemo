@@ -1,7 +1,7 @@
 package com.demo.web.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.demo.common.api.Message;
+import com.demo.api.model.Message;
 import com.demo.web.base.BaseController;
 import com.demo.common.tools.DateUtils;
 import com.demo.common.tools.MD5Utils;

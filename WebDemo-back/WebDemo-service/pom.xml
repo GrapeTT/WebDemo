@@ -21,6 +21,10 @@
             <groupId>com.demo</groupId>
             <artifactId>WebDemo-dao</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.demo</groupId>
+            <artifactId>WebDemo-api</artifactId>
+        </dependency>
         <!--rabbitmq-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
