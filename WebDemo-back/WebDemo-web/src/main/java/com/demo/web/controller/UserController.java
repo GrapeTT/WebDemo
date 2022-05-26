@@ -120,9 +120,6 @@ public class UserController extends BaseController {
         if(userService.isRepeat(user.getUsername())) {
             return Message.failure("该邮箱已注册，请重新输入");
         }
-        if(userService.isRepeat(user.getUsername())) {
-            return Message.failure("该账号已存在，请重新输入");
-        }
         //注册用户
         String password;
         //验证验证码
