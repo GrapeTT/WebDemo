@@ -2,7 +2,7 @@ package com.demo.common.exception;
 
 /**
  * @Name：CustomException
- * @Package：com.swust.lpms.exception
+ * @Package：com.demo.exception
  * @Descripition：系统自定义的异常类，针对预期的异常，需要在程序中抛出此类的异常
  * @Author：涛
  * @Date：2018/4/7 14:06
@@ -10,7 +10,7 @@ package com.demo.common.exception;
  */
 public class AppException extends Exception{
     //编码
-    private String code= "500";
+    private Integer code = 500;
     //异常信息
     private String message;
     
@@ -21,17 +21,17 @@ public class AppException extends Exception{
         this.message = message;
     }
     
-    public AppException(String code, String message) {
+    public AppException(Integer code, String message) {
         super(message);
         this.code = code;
         this.message = message;
     }
     
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
     
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
     

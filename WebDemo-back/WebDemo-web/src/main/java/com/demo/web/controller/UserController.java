@@ -1,6 +1,7 @@
 package com.demo.web.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.demo.api.constant.ErrorCode;
 import com.demo.api.model.Message;
 import com.demo.web.base.BaseController;
 import com.demo.common.tools.DateUtils;
@@ -81,7 +82,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/getValidateCode", method = RequestMethod.POST)
     public @ResponseBody Message<Void> getValidateCode(@Param("email") String email) throws Exception {
         if(StringUtils.isEmpty(email)) {
-            return Message.failure("系统异常，请稍后再试");
+            return Message.failure(ErrorCode.ILLEGAL_PARAM);
         }
         //如果验证码已获取且未过期，则不让用户再次获取
         if(VALIDATECODES.get(email) != null) {

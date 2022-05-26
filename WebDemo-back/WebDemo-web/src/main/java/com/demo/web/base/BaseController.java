@@ -4,7 +4,7 @@ import cn.hutool.log.Log;
 
 /**
  * @Name：BaseController
- * @Package：com.cjpb.base
+ * @Package：com.demo.base
  * @Descripition：
  * @Author：涛
  * @Date：2018/9/4 14:38

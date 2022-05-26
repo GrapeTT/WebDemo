@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @Description：日期格式转换
  * @Name：DateUtils
- * @Package：com.swust.lpms.tools
+ * @Package：com.demo.tools
  * @Author：涛哥
  * @Time：2019/4/15 16:04
  * @Version：1.0

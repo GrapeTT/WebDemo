@@ -23,7 +23,7 @@ public class ExceptionResolver {
      */
     @ExceptionHandler(value = NoHandlerFoundException.class)
     public @ResponseBody Message resolve404() {
-        return Message.failure("404", "没有找到对应接口！");
+        return Message.failure(404, "没有找到对应接口！");
     }
     
     /**
@@ -33,7 +33,7 @@ public class ExceptionResolver {
      */
     @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
     public @ResponseBody Message resolve405() {
-        return Message.failure("405", "请求方式错误！");
+        return Message.failure(405, "请求方式错误！");
     }
     
     /**

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 /**
  * @Description：session工具类
  * @Name：SessionUtils
- * @Package：com.swust.lpms.tools
+ * @Package：com.demo.tools
  * @Author：涛哥
  * @Time：2019/4/21 23:35
  * @Version：1.0

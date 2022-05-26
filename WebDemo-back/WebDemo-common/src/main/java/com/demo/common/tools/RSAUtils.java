@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * @Description：RSA工具类
  * @Name：RSAUtils
- * @Package：com.swust.lpms.tools
+ * @Package：com.demo.tools
  * @Author：涛哥
  * @Time：2019/5/6 11:33
  * @Version：1.0

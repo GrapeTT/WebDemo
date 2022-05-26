@@ -2,42 +2,40 @@ package com.demo.api.model;
 
 /**
  * @Name：Message
- * @Package：com.cjpb.api
+ * @Package：com.demo.api.model
  * @Descripition：
  * @Author：涛
  * @Date：2018/8/8 15:11
  * @Version：1.0
  */
+import com.demo.api.constant.ErrorCode;
+
 import java.io.Serializable;
 
 public class Message<T> implements Serializable {
-    public static final String SUCCESS_CODE = "200";
-    public static final String INNERT_ERROR_CODE = "500";
-    public static final String ERROR_CODE = "5001";
-    
-    private String code = SUCCESS_CODE;
+    private Integer code = ErrorCode.SUCCESS.getCode();
     private T data;
-    private String message = "ok";
+    private String message = ErrorCode.SUCCESS.getMsg();
     
     public Message() {
     }
     
-    public Message(String code, String message) {
+    public Message(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
     
-    public Message(String code, String message, T data) {
+    public Message(Integer code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;
     }
     
-    public String getCode() {
+    public int getCode() {
         return this.code;
     }
     
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
     
@@ -57,41 +55,49 @@ public class Message<T> implements Serializable {
         this.message = message;
     }
     
-    public static <T> Message<T> create(String code, String message) {
+    public static <T> Message<T> create(Integer code, String message) {
         return new Message(code, message);
     }
     
-    public static <T> Message<T> create(String code, String message, T data) {
+    public static <T> Message<T> create(Integer code, String message, T data) {
         return new Message(code, message, data);
     }
     
     public static <T> Message<T> success() {
-        return success("ok");
+        return success(ErrorCode.SUCCESS);
+    }
+    
+    public static <T> Message<T> success(ErrorCode errorCode) {
+        return create(errorCode.getCode(), errorCode.getMsg());
     }
     
     public static <T> Message<T> success(String message) {
-        return create(SUCCESS_CODE, message);
+        return create(ErrorCode.SUCCESS.getCode(), message);
     }
     
     public static <T> Message<T> success(String message, T data) {
-        return create(SUCCESS_CODE, message, data);
+        return create(ErrorCode.SUCCESS.getCode(), message, data);
     }
     
-    public static <T> Message<T> writeData(T data) {
+    public static <T> Message<T> successWithData(T data) {
         Message<T> message = success();
         message.setData(data);
         return message;
     }
     
     public static <T> Message<T> failure() {
-        return failure("failure!");
+        return failure(ErrorCode.FAILURE);
+    }
+    
+    public static <T> Message<T> failure(ErrorCode errorCode) {
+        return create(errorCode.getCode(), errorCode.getMsg());
     }
     
     public static <T> Message<T> failure(String message) {
-        return create(ERROR_CODE, message);
+        return create(ErrorCode.FAILURE.getCode(), message);
     }
     
-    public static <T> Message<T> failure(String code, String message) {
+    public static <T> Message<T> failure(Integer code, String message) {
         return create(code, message);
     }
     
@@ -99,13 +105,13 @@ public class Message<T> implements Serializable {
         return failure("exception:" + ex.getMessage());
     }
     
-    public static <T> Message<T> failure(String code, Exception ex) {
+    public static <T> Message<T> failure(Integer code, Exception ex) {
         Message<T> message = failure(ex);
         message.setCode(code);
         return message;
     }
     
     public boolean isSuccess() {
-        return SUCCESS_CODE == this.code;
+        return ErrorCode.SUCCESS.getCode() == this.code;
     }
 }

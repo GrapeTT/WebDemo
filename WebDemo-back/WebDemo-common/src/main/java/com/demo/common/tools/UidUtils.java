@@ -7,7 +7,7 @@ import java.util.Calendar;
 /**
  * @Description：uid生成工具类
  * @Name：UidUtils
- * @Package：com.swust.lpms.tools
+ * @Package：com.demo.tools
  * @Author：涛哥
  * @Time：2019/4/25 18:26
  * @Version：1.0

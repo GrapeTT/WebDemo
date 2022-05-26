@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * @Description：AES加解密工具类
  * @Name：AES
- * @Package：com.swust.lpms.tools
+ * @Package：com.demo.tools
  * @Author：涛哥
  * @Time：2019/3/30 22:54
  * @Version：1.0

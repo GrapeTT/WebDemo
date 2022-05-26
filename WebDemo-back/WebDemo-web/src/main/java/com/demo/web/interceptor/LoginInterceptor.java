@@ -34,7 +34,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
         //执行这里表示用户身份需要认证
-        throw new AppException("401", "请登录！");
+        throw new AppException(401, "请登录！");
 //        return false;
     }
 

@@ -1,6 +1,7 @@
 package com.demo.web.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.demo.api.constant.ErrorCode;
 import com.demo.api.model.Message;
 import com.demo.web.base.BaseController;
 import com.demo.common.tools.DateUtils;
@@ -105,7 +106,7 @@ public class FileController extends BaseController {
             return message;
         } catch (Exception e) {
             LOG.error("文件上传失败", e);
-            return Message.failure("500", "服务器内部错误");
+            return Message.failure(ErrorCode.SERVER_ERROR);
         }
     }
     
