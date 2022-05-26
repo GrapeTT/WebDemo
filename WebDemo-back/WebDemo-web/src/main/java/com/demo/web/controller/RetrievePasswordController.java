@@ -53,7 +53,7 @@ public class RetrievePasswordController extends BaseController {
             return Message.failure(ErrorCode.ILLEGAL_PARAM);
         }
         //如果验证码已获取且未过期，则不让用户再次获取
-        if(validateUtils.isCodeExsit(BUS_KEY, email)) {
+        if(validateUtils.isCodeExist(BUS_KEY, email)) {
             return Message.failure("验证码未过期，请勿重复获取");
         }
         //验证邮箱是否存在
