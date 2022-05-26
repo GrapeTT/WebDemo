@@ -22,7 +22,7 @@ public class ExceptionResolver {
      * @Time：2019/3/6 16:54
      */
     @ExceptionHandler(value = NoHandlerFoundException.class)
-    public @ResponseBody Message resolve404() {
+    public @ResponseBody Message<Void> resolve404() {
         return Message.failure(404, "没有找到对应接口！");
     }
     
@@ -32,7 +32,7 @@ public class ExceptionResolver {
      * @Time：2019/3/6 16:54
      */
     @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
-    public @ResponseBody Message resolve405() {
+    public @ResponseBody Message<Void> resolve405() {
         return Message.failure(405, "请求方式错误！");
     }
     
@@ -42,7 +42,7 @@ public class ExceptionResolver {
      * @Time：2019/3/6 16:54
      */
     @ExceptionHandler(value = Exception.class)
-    public @ResponseBody Message resolve500(Exception e) {
+    public @ResponseBody Message<Void> resolve500(Exception e) {
         AppException appException;
         if(e instanceof AppException){
             appException = (AppException)e;

@@ -1,14 +1,14 @@
 package com.demo.common.email;
 
 import cn.hutool.log.Log;
-import com.demo.common.tools.DateUtils;
-import org.apache.commons.lang3.RandomUtils;
 
-
-import javax.mail.*;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -72,14 +72,7 @@ public class EmailClient {
      * @Author：涛哥
      * @Time：2019/3/28 16:02
      */
-    public String sendEmail(String receiver) {
-        //生成验证码
-        String validateCode = buildValidateCode();
-        
-        //验证码过期时间（5分钟过期）
-        Date invalidTime = new Date();
-        invalidTime.setTime(invalidTime.getTime() + 300000);
-        
+    public boolean sendEmail(String receiver, String content) {
         try{
             // 创建默认的 MimeMessage 对象
             MimeMessage message = new MimeMessage(session);
@@ -94,33 +87,16 @@ public class EmailClient {
             message.setSubject(title, "UTF-8");
             
             // 设置邮件正文
-            message.setContent("您的验证码：" + validateCode + "。<br>" +
-                            "验证码将在5分钟（" + DateUtils.format(invalidTime) + "）后过期，请尽快使用。<br>" +
-                            "以上为系统邮件，请勿回复。谢谢！<br>",
-                    "text/html;charset=UTF-8");
+            message.setContent(content, "text/html;charset=UTF-8");
             
             // 发送消息
             Transport.send(message);
-            return validateCode;
+            LOG.info("发送邮件，receiver={}，content={}", receiver, content);
+            return true;
         }catch (Exception e) {
-            LOG.error("发送验证码邮件失败，receiver=" + receiver, e);
-            return null;
+            LOG.error("发送邮件失败，receiver={}", receiver, e);
+            return false;
         }
-    }
-    
-    /**
-     * @Description：生成验证码
-     * @Author：涛哥
-     * @Time：2019/3/28 16:24
-     */
-    private String buildValidateCode() {
-        StringBuilder valivalidateCode = new StringBuilder();
-        int code;
-        for(int i = 0; i < 6; i++) {
-            code = RandomUtils.nextInt(0, 10);
-            valivalidateCode.append(code);
-        }
-        return valivalidateCode.toString();
     }
     
     public String getHost() {

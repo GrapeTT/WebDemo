@@ -53,7 +53,7 @@ public class FileController extends BaseController {
      * @Time：2019/9/3 10:26
      */
     @RequestMapping(value = "/upload", method = {RequestMethod.POST})
-    public @ResponseBody Message upload(HttpServletRequest request) {
+    public @ResponseBody Message<Map<String, String>> upload(HttpServletRequest request) {
         try {
             List<MultipartFile> fileList = ((MultipartHttpServletRequest) request).getFiles("file");
             if (CollectionUtil.isEmpty(fileList)) {
@@ -62,7 +62,7 @@ public class FileController extends BaseController {
             if(fileList.size() > 10) {
                 return Message.failure("单次最多上传10个文件");
             }
-            Message message = Message.success();
+            Message<Map<String, String>> message = Message.success();
             //key：文件名，value：文件url
             Map<String, String> fileMap = new HashMap<>();
             //记录上传成功文件数
