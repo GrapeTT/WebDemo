@@ -56,7 +56,7 @@ public class UserController extends BaseController {
         if(password != null) {
             password = MD5Utils.encrypt(password);
         } else {
-            return Message.failure("服务器异常，请稍后再试");
+            return Message.failure(ErrorCode.ILLEGAL_PARAM);
         }
         condition.setPassword(password);
         User user = userService.getOne(Wrappers.query(condition));
