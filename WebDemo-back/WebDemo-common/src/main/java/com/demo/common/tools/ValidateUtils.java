@@ -86,7 +86,7 @@ public class ValidateUtils {
      * @author tao
      * @date 2022/5/26 17:28
      */
-    public boolean isCodeExsit(String busKey, String ...keySuffixs) {
+    public boolean isCodeExist(String busKey, String ...keySuffixs) {
         String key = this.genKey(CODE_KEY_PREFIX, busKey, keySuffixs);
         String serverCode = redisClient.get(key);
         return StringUtils.isNotBlank(serverCode);
