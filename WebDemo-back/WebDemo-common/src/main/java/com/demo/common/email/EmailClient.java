@@ -94,7 +94,7 @@ public class EmailClient {
             LOG.info("发送邮件，receiver={}，content={}", receiver, content);
             return true;
         }catch (Exception e) {
-            LOG.error("发送邮件失败，receiver={}", receiver, e);
+            LOG.error(e, "发送邮件失败，receiver={}", receiver);
             return false;
         }
     }

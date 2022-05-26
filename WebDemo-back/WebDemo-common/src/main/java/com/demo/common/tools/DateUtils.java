@@ -74,7 +74,7 @@ public class DateUtils {
         try {
             return simpleDateFormat.parse(date);
         } catch (Exception e) {
-            LOG.error("转换时间失败，date=" + date, e);
+            LOG.error(e, "转换时间失败，date=" + date);
         }
         return null;
     }

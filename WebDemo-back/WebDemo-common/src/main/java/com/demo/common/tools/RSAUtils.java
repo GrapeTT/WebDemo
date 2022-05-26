@@ -90,7 +90,7 @@ public class RSAUtils {
             keyMap.put("PublicKey", new BASE64Encoder().encodeBuffer(publicKey.getEncoded()));
             keyMap.put("PrivateKey", new BASE64Encoder().encodeBuffer(privateKey.getEncoded()));
         } catch (Exception e) {
-            LOG.error("生成RSA公私钥对失败", e);
+            LOG.error(e, "生成RSA公私钥对失败");
         }
         return keyMap;
     }
@@ -150,7 +150,7 @@ public class RSAUtils {
             byte[] resultBytes = cipher.doFinal(sourceBytes);
             return new String(resultBytes);
         }catch (Exception e){
-            LOG.error("RSA解密失败", e);
+            LOG.error(e, "RSA解密失败");
             return null;
         }
     }

@@ -33,7 +33,7 @@ public class DateConverter extends JsonDeserializer<Date> {
         try {
             date = DateUtils.parseDate(dateString, patterns);
         } catch (ParseException e) {
-            LOG.error("转换日期失败，date=" + dateString, e);
+            LOG.error(e, "转换日期失败，date=" + dateString);
             //转换失败返回空
             return null;
         }

@@ -36,7 +36,7 @@ public final class RedisClient {
             }
             return true;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -59,7 +59,7 @@ public final class RedisClient {
         try {
             return redisTemplate.hasKey(key);
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -107,7 +107,7 @@ public final class RedisClient {
             redisTemplate.opsForValue().set(key, value);
             return true;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -128,7 +128,7 @@ public final class RedisClient {
             }
             return true;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -190,7 +190,7 @@ public final class RedisClient {
             redisTemplate.opsForHash().putAll(key, map);
             return true;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -210,7 +210,7 @@ public final class RedisClient {
             }
             return true;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -227,7 +227,7 @@ public final class RedisClient {
             redisTemplate.opsForHash().put(key, item, value);
             return true;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -248,7 +248,7 @@ public final class RedisClient {
             }
             return true;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -304,7 +304,7 @@ public final class RedisClient {
         try {
             return redisTemplate.opsForSet().members(key);
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return null;
         }
     }
@@ -319,7 +319,7 @@ public final class RedisClient {
         try {
             return redisTemplate.opsForSet().isMember(key, value);
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -334,7 +334,7 @@ public final class RedisClient {
         try {
             return redisTemplate.opsForSet().add(key, values);
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return 0;
         }
     }
@@ -354,7 +354,7 @@ public final class RedisClient {
             }
             return count;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return 0;
         }
     }
@@ -368,7 +368,7 @@ public final class RedisClient {
         try {
             return redisTemplate.opsForSet().size(key);
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return 0;
         }
     }
@@ -384,7 +384,7 @@ public final class RedisClient {
             Long count = redisTemplate.opsForSet().remove(key, values);
             return count;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return 0;
         }
     }
@@ -401,7 +401,7 @@ public final class RedisClient {
         try {
             return redisTemplate.opsForList().range(key, start, end);
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return null;
         }
     }
@@ -415,7 +415,7 @@ public final class RedisClient {
         try {
             return redisTemplate.opsForList().size(key);
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return 0;
         }
     }
@@ -430,7 +430,7 @@ public final class RedisClient {
         try {
             return redisTemplate.opsForList().index(key, index);
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return null;
         }
     }
@@ -446,7 +446,7 @@ public final class RedisClient {
             redisTemplate.opsForList().rightPush(key, value);
             return true;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -466,7 +466,7 @@ public final class RedisClient {
             }
             return true;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -482,7 +482,7 @@ public final class RedisClient {
             redisTemplate.opsForList().rightPushAll(key, value);
             return true;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -503,7 +503,7 @@ public final class RedisClient {
             }
             return true;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -520,7 +520,7 @@ public final class RedisClient {
             redisTemplate.opsForList().set(key, index, value);
             return true;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return false;
         }
     }
@@ -537,7 +537,7 @@ public final class RedisClient {
             Long remove = redisTemplate.opsForList().remove(key, count, value);
             return remove;
         } catch (Exception e) {
-            LOG.error("redis异常", e);
+            LOG.error(e, "redis异常");
             return 0;
         }
     }

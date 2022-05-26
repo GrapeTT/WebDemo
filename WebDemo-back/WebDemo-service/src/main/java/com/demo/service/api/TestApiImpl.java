@@ -1,8 +1,8 @@
 package com.demo.service.api;
 
-import cn.hutool.log.Log;
 import com.demo.api.model.Message;
 import com.demo.api.service.TestApi;
+import com.demo.service.base.BaseService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,9 +14,7 @@ import org.springframework.stereotype.Service;
  * @Version：1.0
  */
 @Service
-public class TestApiImpl implements TestApi {
-    private static final Log LOG = Log.get();
-    
+public class TestApiImpl implements TestApi, BaseService {
     /**
      * 测试
      *

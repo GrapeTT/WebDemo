@@ -37,7 +37,7 @@ public class AESUtils {
             byte [] encode_value = cipher.doFinal(byte_value); //密码器加密数据
             return Base64.encode(encode_value); //将加密后的数据转换为字符串返回
         } catch (Exception e) {
-            LOG.error("AES加密失败", e);
+            LOG.error(e, "AES加密失败");
             return null;
         }
     }
@@ -57,7 +57,7 @@ public class AESUtils {
             byte [] byte_value = cipher.doFinal(encode_value); //密码器解密数据
             return new String(byte_value,StandardCharsets.UTF_8); //将解密后的数据转换为字符串返回
         } catch (Exception e) {
-            LOG.error("AES解密失败", e);
+            LOG.error(e, "AES解密失败");
             return null;
         }
     }

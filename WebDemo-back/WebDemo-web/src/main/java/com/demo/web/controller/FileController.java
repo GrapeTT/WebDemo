@@ -105,7 +105,7 @@ public class FileController extends BaseController {
             message.setMessage("文件总数：" + fileList.size() + "，上传成功：" + successCount + "，上传失败：" + (fileList.size() - successCount));
             return message;
         } catch (Exception e) {
-            LOG.error("文件上传失败", e);
+            LOG.error(e, "文件上传失败");
             return Message.failure(ErrorCode.SERVER_ERROR);
         }
     }
@@ -141,7 +141,7 @@ public class FileController extends BaseController {
                 res = inputStream.read(buffer);
             }
         } catch (Exception e) {
-            LOG.error("下载文件失败，folderName=" + folderName + "，fileName=" + fileName, e);
+            LOG.error(e, "下载文件失败，folderName=" + folderName + "，fileName=" + fileName);
         } finally {
             try {
                 if(inputStream != null) {
@@ -152,7 +152,7 @@ public class FileController extends BaseController {
                     outputStream.close();
                 }
             } catch (Exception e) {
-                LOG.error("关闭下载文件流失败", e);
+                LOG.error(e, "关闭下载文件流失败");
             }
         }
     }

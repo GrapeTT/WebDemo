@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.demo.dao.domain.User;
 import com.demo.dao.mapper.UserMapper;
 import com.demo.service.UserService;
-import cn.hutool.log.Log;
+import com.demo.service.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +18,7 @@ import org.springframework.stereotype.Service;
  * @since 2021-01-05
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
-    private static final Log LOG = Log.get();
-    
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService, BaseService {
     @Autowired
     private UserMapper userMapper;
     
