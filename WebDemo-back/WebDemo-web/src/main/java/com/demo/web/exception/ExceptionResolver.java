@@ -1,5 +1,6 @@
 package com.demo.web.exception;
 
+import cn.hutool.log.Log;
 import com.demo.api.model.Message;
 import com.demo.common.exception.AppException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -16,6 +17,8 @@ import org.springframework.web.servlet.NoHandlerFoundException;
  */
 @ControllerAdvice
 public class ExceptionResolver {
+    private static final Log LOG = Log.get();
+    
     /**
      * @Description：404
      * @Author：涛哥
@@ -43,6 +46,7 @@ public class ExceptionResolver {
      */
     @ExceptionHandler(value = Exception.class)
     public @ResponseBody Message<Void> resolve500(Exception e) {
+        LOG.error(e, "occur exception！");
         AppException appException;
         if(e instanceof AppException){
             appException = (AppException)e;
