@@ -86,7 +86,14 @@ public final class RedisClient {
      * @return 值
      */
     public String get(String key) {
-        return key == null ? null : String.valueOf(redisTemplate.opsForValue().get(key));
+        if (key == null) {
+            return null;
+        }
+        Object value = redisTemplate.opsForValue().get(key);
+        if (value == null) {
+            return null;
+        }
+        return String.valueOf(value);
     }
 
     /**
