@@ -116,7 +116,7 @@ public class EmailClient {
     private String buildValidateCode() {
         StringBuilder valivalidateCode = new StringBuilder();
         int code;
-        for(int i = 0; i < 4; i++) {
+        for(int i = 0; i < 6; i++) {
             code = RandomUtils.nextInt(0, 10);
             valivalidateCode.append(code);
         }

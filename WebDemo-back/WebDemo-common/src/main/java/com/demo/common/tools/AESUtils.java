@@ -1,6 +1,6 @@
 package com.demo.common.tools;
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
+import cn.hutool.core.codec.Base64;
 import cn.hutool.log.Log;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;

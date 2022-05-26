@@ -9,6 +9,6 @@
         <property name="sender" value="${email.sender}"/>
         <property name="isAuth" value="${email.isAuth}"/>
         <property name="authCode" value="${email.authCode}"/>
-        <property name="title" value="WebDemo：验证码" />
+        <property name="title" value="Demo：验证码" />
     </bean>
 </beans>
