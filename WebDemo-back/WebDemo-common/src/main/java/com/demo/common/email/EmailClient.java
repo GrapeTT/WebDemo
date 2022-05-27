@@ -2,13 +2,10 @@ package com.demo.common.email;
 
 import cn.hutool.log.Log;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -36,33 +33,37 @@ public class EmailClient {
     private Properties properties = null;
     //默认session对象
     private Session session = null;
+    //默认transport对象
+    private Transport transport = null;
     
     /**
-     * @Description：初始化系统属性和默认session对象
+     * @Description：初始化系统属性和默认session、transport对象
      * @Author：涛哥
      * @Time：2019/3/28 16:02
      */
-    private void init() {
+    private void init() throws Exception {
         if(properties == null) {
             properties = System.getProperties();
-            // 设置邮件服务器
-            properties.setProperty("mail.smtp.host", host);
+            //设置协议
+            properties.setProperty("mail.transport.protocol", "smtps");
+            //开启SSL
+            properties.setProperty("mail.smtps.ssl.enable", "true");
+            //设置邮件服务器
+            properties.setProperty("mail.smtps.host", host);
             //设置端口
-            properties.setProperty("mail.smtp.port", port);
+            //QQ邮箱SMTP的SSL端口为465
+            properties.setProperty("mail.smtps.port", port);
             //设置认证
-            properties.put("mail.smtp.auth", isAuth);
-    
-            properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-            properties.setProperty("mail.smtp.socketFactory.fallback", "false");
-            properties.setProperty("mail.smtp.socketFactory.port", port);
+            properties.setProperty("mail.smtps.auth", isAuth);
         }
         if(session == null) {
-            session = Session.getDefaultInstance(properties, new Authenticator(){
-                public PasswordAuthentication getPasswordAuthentication()
-                {
-                    return new PasswordAuthentication(sender, authCode); //发件人邮件用户名、授权码
-                }
-            });
+            session = Session.getInstance(properties);
+            //开启debug模式
+//            session.setDebug(true);
+        }
+        if (transport == null) {
+            transport = session.getTransport();
+            transport.connect(sender, authCode);
         }
     }
     
@@ -89,8 +90,11 @@ public class EmailClient {
             // 设置邮件正文
             message.setContent(content, "text/html;charset=UTF-8");
             
+            //设置发件时间
+            message.setSentDate(new Date());
+            
             // 发送消息
-            Transport.send(message);
+            transport.sendMessage(message, message.getAllRecipients());
             LOG.info("发送邮件，receiver={}，content={}", receiver, content);
             return true;
         }catch (Exception e) {
