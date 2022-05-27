@@ -33,11 +33,9 @@ public class EmailClient {
     private Properties properties = null;
     //默认session对象
     private Session session = null;
-    //默认transport对象
-    private Transport transport = null;
     
     /**
-     * @Description：初始化系统属性和默认session、transport对象
+     * @Description：初始化系统属性和默认session对象
      * @Author：涛哥
      * @Time：2019/3/28 16:02
      */
@@ -61,10 +59,6 @@ public class EmailClient {
             //开启debug模式
 //            session.setDebug(true);
         }
-        if (transport == null) {
-            transport = session.getTransport();
-            transport.connect(sender, authCode);
-        }
     }
     
     /**
@@ -74,6 +68,7 @@ public class EmailClient {
      * @Time：2019/3/28 16:02
      */
     public boolean sendEmail(String receiver, String content) {
+        Transport transport = null;
         try{
             // 创建默认的 MimeMessage 对象
             MimeMessage message = new MimeMessage(session);
@@ -94,12 +89,22 @@ public class EmailClient {
             message.setSentDate(new Date());
             
             // 发送消息
+            transport = session.getTransport();
+            transport.connect(sender, authCode);
             transport.sendMessage(message, message.getAllRecipients());
             LOG.info("发送邮件，receiver={}，content={}", receiver, content);
             return true;
-        }catch (Exception e) {
+        } catch (Exception e) {
             LOG.error(e, "发送邮件失败，receiver={}", receiver);
             return false;
+        } finally {
+            if (transport != null && transport.isConnected()) {
+                try {
+                    transport.close();
+                } catch (Exception e) {
+                    LOG.error(e, "关闭transport失败，receiver={}", receiver);
+                }
+            }
         }
     }
     
